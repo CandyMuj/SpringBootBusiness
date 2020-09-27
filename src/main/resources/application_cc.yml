@@ -1,0 +1,27 @@
+# 系统或全局的配置 （若只需要框架，此文件内的配置不建议删除，建议只修改，视具体情况而定）
+
+
+
+# 系统全局配置
+global:
+  # 系统全局默认编码
+  encoding: UTF-8
+
+
+interface:
+  auth:
+    # 接口鉴权 排除列表，支持通配符 *
+    exclude:
+      # 静态资源
+      - /*.html
+      - /*.css
+      - /*.js
+      - /*.png
+      # swagger
+      - /swagger-resources*
+      - /webjars*
+      - /v2/api-docs
+      - /csrf
+      - /favicon.ico
+      # 其他
+      - /test
