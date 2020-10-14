@@ -104,9 +104,9 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Swagger API By CandyMuj")
-                .description("旅行风光-API")
+                .description("xxx-API")
                 .termsOfServiceUrl("")
-                .contact(new Contact("CandyMuj", "www.candymuj.cc", "if@mj-mail.cc"))
+                .contact(new Contact("CandyMuj", "www.candymuj.cc", "mj@mj-mail.cc"))
                 .version("1.0")
                 .build();
     }
