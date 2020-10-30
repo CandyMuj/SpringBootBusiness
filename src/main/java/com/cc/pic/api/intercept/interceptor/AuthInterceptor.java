@@ -2,6 +2,7 @@ package com.cc.pic.api.intercept.interceptor;
 
 import cn.hutool.core.util.StrUtil;
 import com.cc.pic.api.annotations.Ann;
+import com.cc.pic.api.config.StatusCode;
 import com.cc.pic.api.exception.AuthException;
 import com.cc.pic.api.pojo.sys.User;
 import com.cc.pic.api.utils.Methodc;
@@ -39,7 +40,11 @@ public class AuthInterceptor implements HandlerInterceptor {
     private JwtTokenFactory jwtTokenFactory;
 
 
+    private static final String SIGN_FIELD = YmlConfig.getString("src.sign.field");
     private static final String SIGN_NONCE = YmlConfig.getString("src.sign.nonce");
+    private static final String SIGN_TIMESPAN = YmlConfig.getString("src.sign.timespan");
+    private static final long SIGN_LIMITED = YmlConfig.getLongValue("src.sign.limited");
+
     // 将接口鉴权uri的鉴权结果做一个缓存，不用每次都去循环配置内的排除鉴权项
     private static final Map<String, Boolean> INTERFACE_EXCLUDE_RES = new HashMap<>();
 
@@ -58,10 +63,17 @@ public class AuthInterceptor implements HandlerInterceptor {
                     params.put(k, v[0]);
                 });
                 if (StrUtil.isBlank(params.get(SIGN_NONCE))) {
-                    throw new RuntimeException("缺少必要参数[".concat(SIGN_NONCE).concat("]"));
+                    throw new AuthException("缺少必要参数[".concat(SIGN_NONCE).concat("]"), StatusCode.FAIL);
                 }
-                if (!Methodc.generateSignature(params).equals(params.get(YmlConfig.getString("src.sign.field")))) {
-                    throw new RuntimeException("非法请求");
+                if (StrUtil.isBlank(params.get(SIGN_TIMESPAN))) {
+                    throw new AuthException("缺少必要参数[".concat(SIGN_TIMESPAN).concat("]"), StatusCode.FAIL);
+                }
+                if (!Methodc.generateSignature(params).equals(params.get(SIGN_FIELD))) {
+                    throw new AuthException("非法请求", StatusCode.FAIL);
+                }
+                String verTimespan = verTimespan(Long.valueOf(params.get(SIGN_TIMESPAN)));
+                if (verTimespan != null) {
+                    throw new AuthException(verTimespan, StatusCode.FAIL);
                 }
             }
 
@@ -105,6 +117,27 @@ public class AuthInterceptor implements HandlerInterceptor {
         return true;
     }
 
+
+    /**
+     * 验证时间戳
+     *
+     * @param timespan
+     * @return
+     */
+    private String verTimespan(Long timespan) {
+        long nowTime = System.currentTimeMillis();
+
+        // 判断传入的时间戳是否大于当前系统时间
+        if (timespan > nowTime) {
+            return "错误的时间戳：超过当前系统时间";
+        }
+        // 判断传入的时间戳与当前系统时间相差是否超过一分钟
+        if ((nowTime - timespan) >= SIGN_LIMITED) {
+            return "错误的时间戳：过时的请求";
+        }
+
+        return null;
+    }
 
     /**
      * 接口鉴权
