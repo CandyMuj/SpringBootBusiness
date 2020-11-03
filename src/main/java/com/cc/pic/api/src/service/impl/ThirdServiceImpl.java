@@ -117,7 +117,7 @@ public class ThirdServiceImpl implements IThirdService {
      * 验证码校验
      */
     @Override
-    public Result<String> check(HttpServletRequest request, SmsEnum smsEnum, String phone, String smsCode) {
+    public Result<?> check(HttpServletRequest request, SmsEnum smsEnum, String phone, String smsCode) {
         String defaultCode = YmlConfig.getString("src.third.sms.default");
         if (StrUtil.isNotBlank(defaultCode) && defaultCode.equals(smsCode)) {
             return Result.OK();

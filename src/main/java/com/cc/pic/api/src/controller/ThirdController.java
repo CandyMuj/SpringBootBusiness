@@ -52,7 +52,7 @@ public class ThirdController extends BaseController {
 
     @ApiOperation("短信-校验验证码 此接口可能不会用到，验证写在业务接口中")
     @PostMapping("/sms/check")
-    public Result<String> check(
+    public Result<?> check(
             @ApiIgnore HttpServletRequest request,
             @ApiParam(required = true, value = "手机号") @RequestParam @NotBlank(message = "手机号不可为空") String phone,
             @ApiParam(required = true, value = "验证码") @RequestParam @NotBlank(message = "验证码不可为空") String smsCode,
@@ -63,7 +63,7 @@ public class ThirdController extends BaseController {
             return Result.Error("不受支持的验证码类型");
         }
 
-        Result<String> result = thirdService.check(request, smsEnum, phone, smsCode);
+        Result<?> result = thirdService.check(request, smsEnum, phone, smsCode);
         systemLogService.ins(LogType.IFACES, "短信-校验验证码", request, result);
         return result;
     }
