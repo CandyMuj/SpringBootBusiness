@@ -12,7 +12,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableAsync
 @SpringBootApplication
 @EnableTransactionManagement
-//@ComponentScan(basePackages = {"com.cc.pic.api"})
+//@ComponentScan(basePackages = {"com.cc.api"})
 public class ApiServerApplication {
 
     public static void main(String[] args) {

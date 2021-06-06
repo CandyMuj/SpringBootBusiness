@@ -29,7 +29,7 @@ public class AutoPageAop {
      * @param point
      * @return
      */
-    @Before("execution(com.github.pagehelper.Page com.cc.pic.api..mapper.*Mapper.*(..))")
+    @Before("execution(com.github.pagehelper.Page com.cc.api..mapper.*Mapper.*(..))")
     public void beforeMethod(JoinPoint point) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {

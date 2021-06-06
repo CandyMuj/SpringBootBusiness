@@ -29,8 +29,8 @@ public class ControllerAop {
      * 定义一个切点
      * 拦截所有请求；用于作日志打印
      */
-    @Pointcut("within(com.cc.pic.api..*.*Controller)")
-    // @Pointcut("execution(public * com.cc.pic.api..*.*(..))")
+    @Pointcut("within(com.cc.api..*.*Controller)")
+    // @Pointcut("execution(public * com.cc.api..*.*(..))")
     public void cutOfAll() {
     }
 
@@ -38,7 +38,7 @@ public class ControllerAop {
      * 定义一个切点
      * 拦截返回值为Result的请求；用于返回值的二次处理
      */
-//    @Pointcut("execution(public com.cc.pic.api.pojo.sys.Result *(..))")
+//    @Pointcut("execution(public com.cc.api.pojo.sys.Result *(..))")
 //    public void cutOfResult() {
 //    }
 //

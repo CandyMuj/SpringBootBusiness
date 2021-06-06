@@ -57,6 +57,6 @@
     <logger name="com.netflix" level="INFO"/>
 
 
-    <logger name="com.cc.pic.api" level="DEBUG"/>
+    <logger name="com.cc.api" level="DEBUG"/>
 
 </configuration>
