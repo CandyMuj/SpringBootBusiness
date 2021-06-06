@@ -1,0 +1,37 @@
+# 此配置文件主要用于src下具体业务的配置，看情况使用，有些可配置到cc中  （若只需要框架，此文件内的配置可全部删除，可视具体情况保留需要的）
+
+
+
+# 设置配置环境
+env: local
+
+
+# 第三方服务配置
+third:
+  # 短信相关
+  sms:
+    # 开关
+    enable: false
+    # 默认验证码
+    default: 0000
+    # 超时（分）
+    timeout: 5
+  aliyun:
+    oss:
+      # 默认项目，如果没有自定义的项目则此项目必须存在，且key值不可更改
+      # accessKeyId和accessKeySecret在访问控制中添加RAM用户并授予权限
+      # endpoint的格式形如“http://oss-cn-hangzhou.aliyuncs.com/”，注意http://后不带bucket名称，
+      # bucketName即存储单元
+      # https bucket域名是否使用https协议;为空则为false
+      default:
+        accessKeyId: xxx
+        accessKeySecret: xxx
+        endpoint: oss-cn-chengdu.aliyuncs.com
+        bucketName: xxx
+        https: true
+      # 自定义项目，可以随意编辑名称；建议项目名与bucket一致方便管理；使用时，使用有参构造进行初始化即可
+      customerName:
+        endpoint:
+        accessKeyId:
+        accessKeySecret:
+        bucketName:

@@ -3,59 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.cc.api</groupId>
+        <artifactId>modules</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.cc.api</groupId>
-    <artifactId>SpringBootBusiness</artifactId>
+    <artifactId>src-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <description>My love to love!</description>
-
-
-    <modules>
-        <!-- candy-核心包 -->
-        <module>candy-core</module>
-        <!-- candy-公共包(预留) -->
-        <!--<module>candy-common</module>-->
-        <!-- src-应用模块 -->
-        <module>modules</module>
-    </modules>
-
-
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-
-        <jjwt.version>0.9.0</jjwt.version>
-        <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
-        <fastjson.version>1.2.46</fastjson.version>
-        <!--<json-lib.version>2.4</json-lib.version>-->
-        <gson.version>2.8.5</gson.version>
-        <hutool.version>5.1.0</hutool.version>
-        <commons-io.version>2.6</commons-io.version>
-        <jasypt.version>1.18</jasypt.version>
-        <swagger2.version>2.9.2</swagger2.version>
-        <swagger2-knife4j-ui.version>2.0.3</swagger2-knife4j-ui.version>
-        <!-- 解决进入swagger页面报类型转换错误，排除2.9.2中两个模块的引用，手动增加1.5.21版本 -->
-        <io-swagger.version>1.5.22</io-swagger.version>
-        <!-- 使用较旧的版本，最新版移除了热加载，变更了字段验证策略等配置 -->
-        <mybatis-plus.version>2.1.9</mybatis-plus.version>
-        <velocity-engine-core.version>2.0</velocity-engine-core.version>
-        <pagehelper.version>1.2.12</pagehelper.version>
-
-        <httpcore.version>4.4.3</httpcore.version>
-        <httpclient.version>4.5.1</httpclient.version>
-        <commons-lang.version>2.6</commons-lang.version>
-        <poi.version>3.17</poi.version>
-        <jackson-dataformat-yaml.version>2.10.1</jackson-dataformat-yaml.version>
-
-        <aliyun-sdk-core.version>4.5.1</aliyun-sdk-core.version>
-        <aliyun-sdk-oss.version>3.8.0</aliyun-sdk-oss.version>
-        <weixin-sdk-binarywang.version>3.3.0</weixin-sdk-binarywang.version>
-    </properties>
+    <packaging>jar</packaging>
+    <name>src-common</name>
 
 
     <dependencies>
