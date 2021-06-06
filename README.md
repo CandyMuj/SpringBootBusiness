@@ -1,6 +1,10 @@
 # 分支说明
 
-多模块架构
+* 多模块架构
+
+* 还有一种架构就是模块和candy-core核心模块在同一个目录，而不是用modules分一下
+
+* modules目录可以理解为src-modules（直接命名为modules好看一点吧）
 
 
 
