@@ -27,6 +27,10 @@
         <!--<module>candy-common</module>-->
         <!-- src-应用模块 -->
         <module>modules</module>
+        <!-- modules可以不单独写pom，可以直接用目录斜杠的方式直接引入任意目录下的模块，子模块的parent就全都是引入root模块了
+            但有个坏处不灵活的，我将不能根据不同的modules设置专属的不同的配置等，否则root一改所有子模块就全变了，模块间的依赖耦合度太高
+        <module>modules/src-admin</module>
+        -->
     </modules>
 
 
