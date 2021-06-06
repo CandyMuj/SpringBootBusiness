@@ -317,6 +317,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <configuration>
+                    <!-- 若没有该项配置，devtools将不会起作用，即应用不会restart -->
+                    <fork>true</fork>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
