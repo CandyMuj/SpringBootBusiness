@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <name>modules</name>
 
+
     <modules>
         <!-- modules下的模块都是以src开头的模块，为业务模块，可以自定义名称和自定义扩展的名称和描述无所谓的 -->
         <!-- src-公共(包)模块 -->
@@ -23,31 +24,5 @@
         <module>src-api</module>
     </modules>
 
-
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <target>${java.version}</target>
-                    <source>${java.version}</source>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
