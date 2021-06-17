@@ -1,5 +1,7 @@
 package com.cc.api.enumc.sys;
 
+import cn.hutool.core.util.StrUtil;
+
 /**
  * @ProJectName APIServer
  * @FileName TokenGenerateEnum
@@ -15,6 +17,24 @@ public enum TokenGenerateEnum {
     // 每次都生成唯一的token；每次获取一个新的token，且之前的token失效(意味着在未过期的情况下，同时只有一个token，有且仅有一个有效token)
     ONLY_DEATH,
     // 不生成新的token；如果之前的token已失效才获取新的token(有且仅有一个有效token)
-    OLD
+    OLD;
+
+
+    /**
+     * 通过枚举字符串，解析成枚举对象
+     * <p>
+     * 默认: ONLY_DEATH
+     */
+    public static TokenGenerateEnum val(String val) {
+        if (StrUtil.isNotBlank(val)) {
+            for (TokenGenerateEnum e : TokenGenerateEnum.values()) {
+                if (e.name().equals(val)) {
+                    return e;
+                }
+            }
+        }
+
+        return ONLY_DEATH;
+    }
 
 }

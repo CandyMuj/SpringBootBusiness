@@ -1,6 +1,7 @@
 package com.cc.api.config;
 
 import com.cc.api.enumc.sys.TokenGenerateEnum;
+import com.cc.api.utils.sys.YmlConfig;
 
 /**
  * @ProJectName APIServer
@@ -15,27 +16,27 @@ import com.cc.api.enumc.sys.TokenGenerateEnum;
 public class SecurityConstants {
 
     // jwt签名密钥
-    public static final String JWT_SECRET = "CandyMuj";
+    public static final String JWT_SECRET = YmlConfig.getString("interface.auth.security.jwt_secret");
 
     // token请求头
-    public static final String REQ_HEADER = "Authorization";
+    public static final String REQ_HEADER = YmlConfig.getString("interface.auth.security.req_header");
 
     // token过期时间（天）
-    public static final Integer EXPIRATION = 7;
+    public static final Integer EXPIRATION = YmlConfig.getInteger("interface.auth.security.expiration");
 
     // token分割符 用于用户接口授权
-    public static final String TOKEN_SPLIT = "Bearer ";
+    public static final String TOKEN_SPLIT = YmlConfig.getString("interface.auth.security.token_split").concat(" ");
 
     // 接口鉴权分割符
-    public static final String AUTH_SPLIT = "Basic ";
+    public static final String AUTH_SPLIT = YmlConfig.getString("interface.auth.security.auth_split").concat(" ");
 
     // 接口鉴权：用户名
-    public static final String INTERFACE_AUTH_USERNAME = "CandyMuj";
+    public static final String INTERFACE_AUTH_USERNAME = YmlConfig.getString("interface.auth.security.interface_auth_username");
 
     // 接口鉴权：密码
-    public static final String INTERFACE_AUTH_PASSWORD = "CandyMuj!123_";
+    public static final String INTERFACE_AUTH_PASSWORD = YmlConfig.getString("interface.auth.security.interface_auth_password");
 
     // TOKEN 生成策略
-    public static final TokenGenerateEnum TOKEN_GENERATE_ENUM = TokenGenerateEnum.ONLY_ALIVE;
+    public static final TokenGenerateEnum TOKEN_GENERATE_ENUM = TokenGenerateEnum.val(YmlConfig.getString("interface.auth.security.token_generate_enum"));
 
 }

@@ -13,6 +13,17 @@ global:
 # 接口鉴权相关配置
 interface:
   auth:
+    # SecurityConstants.java 配置
+    # 由于此类的配置需满足各模块的自定义配置，但是此类又是核心包下的，设计只存在一个，且父模块不能直接访问子模块的配置类，因此只能通过读取可访问的存储在类路径中的配置文件来实现
+    security:
+      jwt_secret: CandyMuj
+      req_header: Authorization
+      expiration: 7
+      token_split: Bearer
+      auth_split: Basic
+      interface_auth_username: CandyMuj
+      interface_auth_password: CandyMuj!123_
+      token_generate_enum: ONLY_ALIVE
     # 接口参数签名设置
     sign:
       field: sign
