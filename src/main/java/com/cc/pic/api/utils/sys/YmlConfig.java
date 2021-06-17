@@ -91,7 +91,7 @@ public class YmlConfig {
     private static Object get(String key) {
         Object val = null;
 
-        String env = (String) config.get("env");
+        String env = (String) config.get("spring.profiles.active");
         if (env != null) {
             val = config.get(env.concat(".").concat(key));
         }
