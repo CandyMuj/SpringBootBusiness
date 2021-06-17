@@ -3,6 +3,8 @@ package com.cc.api.config;
 import com.cc.api.enumc.sys.TokenGenerateEnum;
 import com.cc.api.utils.sys.YmlConfig;
 
+import java.util.Optional;
+
 /**
  * @ProJectName APIServer
  * @FileName SecurityConstants
@@ -25,10 +27,10 @@ public class SecurityConstants {
     public static final Integer EXPIRATION = YmlConfig.getInteger("interface.auth.security.expiration");
 
     // token分割符 用于用户接口授权
-    public static final String TOKEN_SPLIT = YmlConfig.getString("interface.auth.security.token_split").concat(" ");
+    public static final String TOKEN_SPLIT = Optional.ofNullable(YmlConfig.getString("interface.auth.security.token_split")).orElse("Bearer").concat(" ");
 
     // 接口鉴权分割符
-    public static final String AUTH_SPLIT = YmlConfig.getString("interface.auth.security.auth_split").concat(" ");
+    public static final String AUTH_SPLIT = Optional.ofNullable(YmlConfig.getString("interface.auth.security.auth_split")).orElse("Basic").concat(" ");
 
     // 接口鉴权：用户名
     public static final String INTERFACE_AUTH_USERNAME = YmlConfig.getString("interface.auth.security.interface_auth_username");
