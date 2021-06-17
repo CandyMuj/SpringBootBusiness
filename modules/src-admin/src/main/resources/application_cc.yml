@@ -48,3 +48,4 @@ interface:
       # 其他
       - /test
       - /third/img/code
+      # 业务相关
