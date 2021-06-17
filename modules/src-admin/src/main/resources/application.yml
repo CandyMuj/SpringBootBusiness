@@ -1,12 +1,11 @@
 server:
-  port: 8080
+  port: 8081
 
 
 spring:
   profiles:
-    # 本地开发环境
-#    active: dev
-    # 生产环境
+    # 本地开发环境 dev
+    # 生产环境 prod
     active: prod
   devtools:
     restart:
