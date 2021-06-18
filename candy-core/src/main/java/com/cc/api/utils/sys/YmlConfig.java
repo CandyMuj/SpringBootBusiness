@@ -115,40 +115,40 @@ public class YmlConfig {
     public static Integer getInteger(String key) {
         Object o = get(key);
         if (o == null) {
-            return 0;
+            return null;
         }
 
         return Integer.parseInt(o.toString());
     }
 
     public static int getIntValue(String key) {
-        return getInteger(key);
+        return Optional.ofNullable(getInteger(key)).orElse(0);
     }
 
     public static Long getLong(String key) {
         Object o = get(key);
         if (o == null) {
-            return 0L;
+            return null;
         }
 
         return Long.parseLong(o.toString());
     }
 
     public static long getLongValue(String key) {
-        return getLong(key);
+        return Optional.ofNullable(getLong(key)).orElse(0L);
     }
 
     public static Boolean getBoolean(String key) {
         Object o = get(key);
         if (o == null) {
-            return false;
+            return null;
         }
 
         return Boolean.parseBoolean(o.toString());
     }
 
     public static boolean getBooleanValue(String key) {
-        return getBoolean(key);
+        return Optional.ofNullable(getBoolean(key)).orElse(false);
     }
 
 }
