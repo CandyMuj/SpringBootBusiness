@@ -18,13 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 public class RestParams {
     // ------------------------------------------------------------------------------ Key定义
     // ----------------------------------- HEADER 参数
-    // 将这个接口的随机参数，因为是uuid，就当作是requestId吧
-    public static final String SIGN_NONCE = YmlConfig.getString("interface.auth.sign.nonce");
+    // 将这个接口的随机参数，因为是uuid，就当作是requestId吧；特点：每一次请求都是唯一的
+    public static final String REQUEST_ID = YmlConfig.getString("interface.auth.sign.nonce");
 
 
     // ------------------------------------------------------------------------------ 获取方法
     public static String getRequestId(HttpServletRequest request) {
-        return getRequestParamVal(request, SIGN_NONCE);
+        return getRequestParamVal(request, REQUEST_ID);
     }
 
 
