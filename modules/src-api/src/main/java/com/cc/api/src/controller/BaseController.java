@@ -2,6 +2,7 @@ package com.cc.api.src.controller;
 
 import com.cc.api.pojo.sys.User;
 import com.cc.api.src.service.ISystemLogService;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
  * @Date 2020/6/9 14:30
  * @Version 1.0
  */
+@Slf4j
 public class BaseController {
     @Resource
     protected ISystemLogService systemLogService;
