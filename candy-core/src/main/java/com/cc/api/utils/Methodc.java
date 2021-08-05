@@ -427,7 +427,7 @@ public class Methodc {
      * @return true:正确
      */
     public static boolean checkPhone(String phone) {
-        return Pattern.compile("0?(13|14|15|17|18|19)[0-9]{9}").matcher(phone).matches();
+        return Pattern.compile("^1[0-9]{10}$").matcher(phone).matches();
     }
 
     /**
