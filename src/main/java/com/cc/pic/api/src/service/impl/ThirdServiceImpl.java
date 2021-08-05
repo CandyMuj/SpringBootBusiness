@@ -136,10 +136,10 @@ public class ThirdServiceImpl implements IThirdService {
     /**
      * 生成图形验证码
      *
-     * @param fingerprint 浏览器指纹，用来确保验证的时候是同一个浏览器发起的，不然a用b的验证码也可能验证成功
+     * @param imgCodeId 图形验证码生成的id，用来确保本次验证的验证码和生成的是同一个，不然a用b的验证码也可能验证成功
      */
     @Override
-    public void createImgCode(HttpServletResponse response, String fingerprint) {
+    public void createImgCode(HttpServletResponse response, String imgCodeId) {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
@@ -148,7 +148,7 @@ public class ThirdServiceImpl implements IThirdService {
         //生成随机字串
         String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
         //存入缓存 不区分大小写
-        redisUtil.set(CacheKey.imgCode(fingerprint), verifyCode.toLowerCase(), 60 * 60);
+        redisUtil.set(CacheKey.imgCode(imgCodeId), verifyCode.toLowerCase(), 60 * 60);
 
         //生成图片
         int width = 100;//宽
@@ -164,14 +164,14 @@ public class ThirdServiceImpl implements IThirdService {
      * 图形验证码校验
      */
     @Override
-    public boolean checkImgCode(String fingerprint, String imgCode) {
+    public boolean checkImgCode(String imgCodeId, String imgCode) {
         // 验证验证码
-        Object code = redisUtil.get(CacheKey.imgCode(fingerprint));
-        if (StrUtil.isBlank(fingerprint) || code == null || !code.equals(imgCode.toLowerCase())) {
+        Object code = redisUtil.get(CacheKey.imgCode(imgCodeId));
+        if (StrUtil.isBlank(imgCodeId) || code == null || !code.equals(imgCode.toLowerCase())) {
             return false;
         }
 
-        redisUtil.del(CacheKey.imgCode(fingerprint));
+        redisUtil.del(CacheKey.imgCode(imgCodeId));
         return true;
     }
 
