@@ -28,7 +28,7 @@ public interface IThirdService {
 
     Result<?> check(HttpServletRequest request, SmsEnum smsEnum, String phone, String smsCode);
 
-    void createImgCode(HttpServletResponse response, String fingerprint);
+    void createImgCode(HttpServletResponse response, String imgCodeId);
 
-    boolean checkImgCode(String fingerprint, String imgCode);
+    boolean checkImgCode(String imgCodeId, String imgCode);
 }

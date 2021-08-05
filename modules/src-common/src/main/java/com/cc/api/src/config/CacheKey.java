@@ -25,8 +25,8 @@ public class CacheKey {
         return SMS_CODE.concat(smsEnum.getKey()).concat(":").concat(phone);
     }
 
-    public static String imgCode(String fingerprint) {
-        return IMG_CODE.concat(fingerprint);
+    public static String imgCode(String imgCodeId) {
+        return IMG_CODE.concat(imgCodeId);
     }
 
 }

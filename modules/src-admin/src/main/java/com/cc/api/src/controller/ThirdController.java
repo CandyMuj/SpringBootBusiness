@@ -72,9 +72,9 @@ public class ThirdController extends BaseController {
     @GetMapping("/img/code")
     public void createImgCode(
             @ApiIgnore HttpServletResponse response,
-            @ApiParam(required = true, value = "浏览器指纹") @RequestParam @NotBlank(message = "浏览器指纹不可为空") String fingerprint
+            @ApiParam(required = true, value = "图片验证码id") @RequestParam @NotBlank(message = "图片验证码id不可为空") String imgCodeId
     ) {
-        thirdService.createImgCode(response, fingerprint);
+        thirdService.createImgCode(response, imgCodeId);
     }
 
 }
