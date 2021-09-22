@@ -1,6 +1,6 @@
 package com.cc.api.src.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.cc.api.pojo.sys.Result;
 import com.cc.api.src.enumc.LogType;
 import com.cc.api.src.pojo.SystemLog;

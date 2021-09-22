@@ -19,9 +19,9 @@ import static com.cc.api.config.StatusCode.SUCCESS;
 @Slf4j
 public class Result<T> {
     public int code;
-    public Integer curPage;
+    public Long curPage;
     public Long totalCount;
-    public Integer pageSize;
+    public Long pageSize;
     public String errcode;
     public String msg;
     public T data;

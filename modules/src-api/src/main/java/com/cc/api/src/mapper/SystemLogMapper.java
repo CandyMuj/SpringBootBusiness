@@ -1,6 +1,6 @@
 package com.cc.api.src.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cc.api.src.pojo.SystemLog;
 import com.cc.api.src.pojo.vo.SystemLogVo;
 import com.github.pagehelper.Page;
