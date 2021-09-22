@@ -95,7 +95,7 @@ public class SystemLogServiceImpl extends ServiceImpl<SystemLogMapper, SystemLog
             result1.curPage = result.curPage;
             result1.totalCount = result.totalCount;
             result1.pageSize = result.pageSize;
-            result1.errcode = result.errcode;
+            result1.errCode = result.errCode;
             result1.msg = result.msg;
             systemLog.setResult(JSONObject.toJSONString(result1));
         }
