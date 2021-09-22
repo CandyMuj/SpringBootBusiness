@@ -2,6 +2,7 @@ package com.cc.api.config.sys.c;
 
 import cn.hutool.core.util.StrUtil;
 import com.cc.api.exception.AuthException;
+import com.cc.api.exception.CandyException;
 import com.cc.api.exception.ResultException;
 import com.cc.api.pojo.sys.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,14 @@ public class GlobalExceptionHandler {
         return new Result<>(e.getResCode(), (StrUtil.isNotBlank(msg) ? msg : "error"));
     }
 
+    /**
+     * 其他自定义异常处理
+     */
+    @ExceptionHandler(CandyException.class)
+    public Result<?> candyException(CandyException e) {
+        String msg = e.getMessage();
+        return Result.Error(StrUtil.isNotBlank(msg) ? msg : "error");
+    }
 
     /**
      * 方法参数校验 绑定参数校验
