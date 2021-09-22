@@ -42,7 +42,7 @@ public class DB {
         Result<List<T>> result = new Result<>(page.getRecords());
         result.curPage = page.getCurrent();
         result.pageSize = page.getSize();
-        result.totalCount = (long) page.getTotal();
+        result.totalCount = page.getTotal();
         return result;
     }
 
