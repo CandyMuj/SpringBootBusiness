@@ -8,6 +8,9 @@ global:
   encoding: UTF-8
   # 是否开启swagger (true/false) 默认（为空）：false
   swagger-open: true
+prod:
+  global:
+    swagger-open: flase
 
 
 # 接口鉴权相关配置
