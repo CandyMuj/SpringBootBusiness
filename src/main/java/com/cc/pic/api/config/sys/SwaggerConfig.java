@@ -1,6 +1,7 @@
 package com.cc.pic.api.config.sys;
 
 import com.cc.pic.api.annotations.ApiVersion;
+import com.cc.pic.api.config.Configc;
 import com.cc.pic.api.config.SecurityConstants;
 import com.cc.pic.api.enumc.ApiGroup;
 import com.cc.pic.api.utils.sys.YmlConfig;
@@ -47,7 +48,8 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(this.globalParameters());
+                .globalOperationParameters(this.globalParameters())
+                .enable(Configc.GLOBAL_SWAGGER_OPEN);
     }
 
     @Bean
@@ -83,7 +85,8 @@ public class SwaggerConfig {
                 })
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(this.globalParameters());
+                .globalOperationParameters(this.globalParameters())
+                .enable(Configc.GLOBAL_SWAGGER_OPEN);
     }
 
     private List<Parameter> globalParameters() {

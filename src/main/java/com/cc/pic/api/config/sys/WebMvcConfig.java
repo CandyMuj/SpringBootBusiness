@@ -40,10 +40,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // token校验放在最上面
-        InterceptorRegistration authInterceptorRegist = registry.addInterceptor(authInterceptor).addPathPatterns("/**");
-        if (Configc.GLOBAL_SWAGGER_OPEN) {
-            authInterceptorRegist.excludePathPatterns("/v2/api-docs");
-        }
+        registry.addInterceptor(authInterceptor).addPathPatterns("/**");
     }
 
 }
