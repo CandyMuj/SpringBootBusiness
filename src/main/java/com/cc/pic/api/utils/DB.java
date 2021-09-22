@@ -1,6 +1,6 @@
 package com.cc.pic.api.utils;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cc.pic.api.pojo.sys.Result;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +42,7 @@ public class DB {
         Result<List<T>> result = new Result<>(page.getRecords());
         result.curPage = page.getCurrent();
         result.pageSize = page.getSize();
-        result.totalCount = (long) page.getTotal();
+        result.totalCount = page.getTotal();
         return result;
     }
 
@@ -54,8 +54,8 @@ public class DB {
      */
     public static <T> Result<List<T>> getPageRes(PageInfo<T> pageInfo) {
         Result<List<T>> result = new Result<>(pageInfo.getList());
-        result.curPage = pageInfo.getPageNum();
-        result.pageSize = pageInfo.getPageSize();
+        result.curPage = (long) pageInfo.getPageNum();
+        result.pageSize = (long) pageInfo.getPageSize();
         result.totalCount = pageInfo.getTotal();
         return result;
     }
@@ -68,16 +68,16 @@ public class DB {
      */
     public static <T> Result<List<T>> getPageRes(com.github.pagehelper.Page<T> page) {
         Result<List<T>> result = new Result<>(page.getResult());
-        result.curPage = page.getPageNum();
-        result.pageSize = page.getPageSize();
+        result.curPage = (long) page.getPageNum();
+        result.pageSize = (long) page.getPageSize();
         result.totalCount = page.getTotal();
         return result;
     }
 
     public static <T> Result<List<T>> getPageRes(org.springframework.data.domain.Page<T> page) {
         Result<List<T>> result = new Result<>(page.getContent());
-        result.curPage = page.getPageable().getPageNumber();
-        result.pageSize = page.getPageable().getPageSize();
+        result.curPage = (long) page.getPageable().getPageNumber();
+        result.pageSize = (long) page.getPageable().getPageSize();
         result.totalCount = page.getTotalElements();
         return result;
     }

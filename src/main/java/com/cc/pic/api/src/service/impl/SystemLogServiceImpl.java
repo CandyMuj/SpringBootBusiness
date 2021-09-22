@@ -2,7 +2,7 @@ package com.cc.pic.api.src.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.pic.api.pojo.sys.Result;
 import com.cc.pic.api.src.enumc.LogType;
 import com.cc.pic.api.src.mapper.SystemLogMapper;

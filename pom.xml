@@ -31,8 +31,7 @@
         <swagger2-knife4j-ui.version>2.0.3</swagger2-knife4j-ui.version>
         <!-- 解决进入swagger页面报类型转换错误，排除2.9.2中两个模块的引用，手动增加1.5.21版本 -->
         <io-swagger.version>1.5.22</io-swagger.version>
-        <!-- 使用较旧的版本，最新版移除了热加载，变更了字段验证策略等配置 -->
-        <mybatis-plus.version>2.1.9</mybatis-plus.version>
+        <mybatis-plus.version>3.4.3.3</mybatis-plus.version>
         <velocity-engine-core.version>2.0</velocity-engine-core.version>
         <pagehelper.version>1.2.12</pagehelper.version>
 

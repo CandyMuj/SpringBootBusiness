@@ -1,6 +1,6 @@
 package com.cc.pic.api.src.pojo;
 
-import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,9 +40,4 @@ public class SystemLog extends Model<SystemLog> {
     @ApiModelProperty("操作ip")
     private String ip;
 
-
-    @Override
-    protected Serializable pkVal() {
-        return null;
-    }
 }
