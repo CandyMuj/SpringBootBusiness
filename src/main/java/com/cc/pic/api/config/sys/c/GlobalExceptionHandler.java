@@ -71,6 +71,15 @@ public class GlobalExceptionHandler {
         return Result.Error(StrUtil.isNotBlank(msg) ? msg.split(", ")[0].split(": ")[1] : "null");
     }
 
+    /**
+     * 其他所有的异常处理
+     */
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Result<?> illegalArgumentException(IllegalArgumentException e) {
+        String msg = e.getMessage();
+        return Result.Error(StrUtil.isNotBlank(msg) ? msg : "error");
+    }
+
 
     /**
      * 其他所有的异常处理
