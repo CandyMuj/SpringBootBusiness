@@ -28,7 +28,7 @@
         <commons-io.version>2.6</commons-io.version>
         <jasypt.version>1.18</jasypt.version>
         <swagger2.version>2.9.2</swagger2.version>
-        <swagger2-knife4j-ui.version>2.0.3</swagger2-knife4j-ui.version>
+        <swagger2-knife4j-ui.version>3.0.3</swagger2-knife4j-ui.version>
         <!-- 解决进入swagger页面报类型转换错误，排除2.9.2中两个模块的引用，手动增加1.5.21版本 -->
         <io-swagger.version>1.5.22</io-swagger.version>
         <mybatis-plus.version>3.4.3.3</mybatis-plus.version>
