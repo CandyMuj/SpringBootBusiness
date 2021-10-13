@@ -1,5 +1,6 @@
 package com.cc.pic.api.intercept.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cc.pic.api.utils.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * @ProJectName APIServer
@@ -30,12 +32,21 @@ public class LogFilter implements Filter {
         if (servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse) {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
 
+            log.info("============================================================================================");
             log.info("IP : {}-{}", request.getRemoteAddr(), IpUtil.getRealIP(request));
             log.info("URL : {}", request.getRequestURL().toString());
             log.info("HTTP_METHOD : {}", request.getMethod());
+            log.info("PARAMS : {}", JSONObject.toJSONString(request.getParameterMap()));
+            Enumeration<String> enumeration = request.getHeaderNames();
+            while (enumeration.hasMoreElements()) {
+                String headerName = enumeration.nextElement();
+                log.debug("HEADER : {}   \t{}", headerName, request.getHeader(headerName));
+            }
+            log.info("============================================================================================");
         }
 
         filterChain.doFilter(servletRequest, servletResponse);
+        log.info("============================================================================================");
     }
 
 }
