@@ -53,7 +53,7 @@ spring:
 # mybaits-plus配置，修改主键类型，mapper.xml、type 别名等
 mybatis-plus:
   # mapper xml地址
-  mapper-locations: classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
   # 别名配置，实体扫描，多个package用逗号或者分号分隔
   type-aliases-package: com.cc.api.src.pojo,com.cc.api.src.pojo.vo
   global-config:
