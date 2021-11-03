@@ -31,6 +31,8 @@
             但有个坏处不灵活的，我将不能根据不同的modules设置专属的不同的配置等，否则root一改所有子模块就全变了，模块间的依赖耦合度太高
         <module>modules/src-admin</module>
         -->
+        <!-- 自己开发的扩展组件 以candy开头命名 -->
+        <module>modules-candy</module>
     </modules>
 
 
