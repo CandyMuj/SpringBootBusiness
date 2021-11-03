@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cc.api.extend.task.mapper.SysTaskJobMapper">
     <!-- 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！-->
-    <resultMap id="SysTaskJob" type="SysTaskJob">
+    <resultMap id="SysTaskJob" type="com.cc.api.extend.task.pojo.SysTaskJob">
         <id property="jobId" column="job_id"/>
         <result property="beanName" column="bean_name"/>
         <result property="methodName" column="method_name"/>
