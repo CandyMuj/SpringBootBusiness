@@ -1,5 +1,6 @@
 package com.cc.api.extend.task.config;
 
+import com.cc.api.extend.task.config.properties.ModulesCandyConfig;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.config.CronTask;
@@ -35,6 +36,9 @@ public class CronTaskRegistrar implements DisposableBean {
     }
 
     public void addCronTask(JobKey jobKey, CronTask cronTask) {
+        if (!ModulesCandyConfig.CandyTask.open) {
+            return;
+        }
         if (cronTask != null) {
             if (this.scheduledTasks.containsKey(jobKey)) {
                 removeCronTask(jobKey);
@@ -45,12 +49,15 @@ public class CronTaskRegistrar implements DisposableBean {
     }
 
     public void removeCronTask(JobKey jobKey) {
+        if (!ModulesCandyConfig.CandyTask.open) {
+            return;
+        }
         ScheduledTask scheduledTask = this.scheduledTasks.remove(jobKey);
         if (scheduledTask != null)
             scheduledTask.cancel();
     }
 
-    public ScheduledTask scheduleCronTask(CronTask cronTask) {
+    private ScheduledTask scheduleCronTask(CronTask cronTask) {
         return new ScheduledTask(
                 cronTask,
                 this.taskScheduler.schedule(cronTask.getRunnable(), cronTask.getTrigger())
