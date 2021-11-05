@@ -71,7 +71,7 @@ public class SysTaskJobRunner implements CommandLineRunner {
             log.info("已关闭集群模式[不加载同步检查逻辑]...");
             return;
         }
-        long interval = Long.parseLong(String.valueOf(Math.ceil(ModulesCandyConfig.CandyTask.clusterCheckInterval / 1000f)));
+        long interval = (long) (Math.ceil(ModulesCandyConfig.CandyTask.clusterCheckInterval / 1000f));
         cronTaskRegistrar.addCronTask(JobKey.jobKey("listenerCheck"), () -> {
             // 从数据库获取：仅获取启用（正常）状态的定时任务列表
             Map<JobKey, SysTaskJob> dataBaseEnableJobMap = sysTaskJobService.getSysJobListByStatus(Enable.ENABLE).stream().collect(
