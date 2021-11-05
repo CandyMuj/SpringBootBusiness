@@ -8,6 +8,23 @@ global:
   encoding: UTF-8
   # 是否开启swagger (true/false) 默认（为空）：false
   swagger-open: true
+
+# 自定义模块/扩展组件的配置
+modules-candy:
+  # 动态定时任务模块配置
+  candy-task:
+    # 是否开启动态定时任务（便于部署时仅开启某一个jar中的定时任务）
+    open: false
+    # 是否开启集群模式（若开启将在指定间隔时间查询数据中配置是否发送变更，变更后将进行更新）
+    cluster: false
+    # 集群模式下，从数据库检查并同步定时任务的时间间隔（毫秒） 默认值是 15000 (即15 秒)
+    clusterCheckInterval: 15000
+
+dev:
+  modules-candy:
+    candy-task:
+      open: true
+      cluster: true
 prod:
   global:
     swagger-open: flase
