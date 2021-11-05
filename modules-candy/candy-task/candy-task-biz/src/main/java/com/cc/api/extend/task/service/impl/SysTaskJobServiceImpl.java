@@ -3,6 +3,7 @@ package com.cc.api.extend.task.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.api.enumc.Enable;
 import com.cc.api.extend.task.config.CronTaskRegistrar;
+import com.cc.api.extend.task.config.JobKey;
 import com.cc.api.extend.task.config.SchedulingRunnable;
 import com.cc.api.extend.task.mapper.SysTaskJobMapper;
 import com.cc.api.extend.task.pojo.SysTaskJob;
@@ -51,10 +52,14 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
             // 动态调整定时任务
             // 若原来存在正常状态的任务，则先移除再添加
             if (oldJob.getJobStatus() == 1) {
-                cronTaskRegistrar.removeCronTask(new SchedulingRunnable(oldJob.getBeanName(), oldJob.getMethodName(), oldJob.getMethodParams()));
+                cronTaskRegistrar.removeCronTask(JobKey.jobKey(oldJob.getJobId()));
             }
             if (taskJob.getJobStatus() == 1) {
-                cronTaskRegistrar.addCronTask(new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()), taskJob.getCronExpression());
+                cronTaskRegistrar.addCronTask(
+                        JobKey.jobKey(taskJob.getJobId()),
+                        new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()),
+                        taskJob.getCronExpression()
+                );
             }
         }
         // 新增
@@ -67,7 +72,11 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
 
             // 动态调整定时任务
             if (taskJob.getJobStatus() == 1) {
-                cronTaskRegistrar.addCronTask(new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()), taskJob.getCronExpression());
+                cronTaskRegistrar.addCronTask(
+                        JobKey.jobKey(taskJob.getJobId()),
+                        new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()),
+                        taskJob.getCronExpression()
+                );
             }
         }
 
@@ -90,7 +99,7 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
 
         // 动态调整定时任务
         if (taskJob.getJobStatus() == 1) {
-            cronTaskRegistrar.removeCronTask(new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()));
+            cronTaskRegistrar.removeCronTask(JobKey.jobKey(taskJob.getJobId()));
         }
 
         return Result.OK();
@@ -115,11 +124,15 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
         // 动态调整定时任务
         // 开启任务
         if (taskJob.getJobStatus() == 1) {
-            cronTaskRegistrar.addCronTask(new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()), taskJob.getCronExpression());
+            cronTaskRegistrar.addCronTask(
+                    JobKey.jobKey(taskJob.getJobId()),
+                    new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()),
+                    taskJob.getCronExpression()
+            );
         }
         // 停止任务
         else {
-            cronTaskRegistrar.removeCronTask(new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()));
+            cronTaskRegistrar.removeCronTask(JobKey.jobKey(taskJob.getJobId()));
         }
 
         return Result.OK();

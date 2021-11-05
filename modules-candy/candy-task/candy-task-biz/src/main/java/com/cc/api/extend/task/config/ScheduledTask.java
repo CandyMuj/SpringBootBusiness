@@ -1,5 +1,7 @@
 package com.cc.api.extend.task.config;
 
+import org.springframework.scheduling.config.CronTask;
+
 import java.util.concurrent.ScheduledFuture;
 
 /**
@@ -12,7 +14,19 @@ import java.util.concurrent.ScheduledFuture;
  * @Version 1.0
  */
 public final class ScheduledTask {
-    volatile ScheduledFuture<?> future;
+    private final CronTask cronTask;
+    private final ScheduledFuture<?> future;
+
+
+    ScheduledTask(CronTask cronTask, ScheduledFuture<?> future) {
+        this.cronTask = cronTask;
+        this.future = future;
+    }
+
+    public CronTask getCronTask() {
+        return this.cronTask;
+    }
+
 
     /**
      * 取消定时任务
