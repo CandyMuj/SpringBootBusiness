@@ -15,10 +15,10 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 @EnableTransactionManagement
 //@ComponentScan(basePackages = {"com.cc.api"})
-public class ApiServerApplication {
+public class AdminServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiServerApplication.class, args);
+        SpringApplication.run(AdminServerApplication.class, args);
     }
 
     @Bean
