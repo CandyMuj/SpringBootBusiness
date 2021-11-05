@@ -71,8 +71,9 @@ public class SysTaskJobRunner implements CommandLineRunner {
             log.info("已关闭集群模式[不加载同步检查逻辑]...");
             return;
         }
+        JobKey listenerJobKey = JobKey.jobKey("listenerCheck");
         long interval = (long) (Math.ceil(ModulesCandyConfig.CandyTask.clusterCheckInterval / 1000f));
-        cronTaskRegistrar.addCronTask(JobKey.jobKey("listenerCheck"), () -> {
+        cronTaskRegistrar.addCronTask(listenerJobKey, () -> {
             // 从数据库获取：仅获取启用（正常）状态的定时任务列表
             Map<JobKey, SysTaskJob> dataBaseEnableJobMap = sysTaskJobService.getSysJobListByStatus(Enable.ENABLE).stream().collect(
                     Collectors.toMap(job -> JobKey.jobKey(job.getJobId()), Function.identity())
@@ -109,6 +110,10 @@ public class SysTaskJobRunner implements CommandLineRunner {
                 return;
             }
             for (JobKey jobKey : notInDataBaseJobKey) {
+                // 监听定时 别打自己给移除了
+                if (jobKey.equals(listenerJobKey)) {
+                    continue;
+                }
                 cronTaskRegistrar.removeCronTask(jobKey);
                 ModulesCandyConfig.CandyTask.lastUpd.remove(jobKey);
             }
