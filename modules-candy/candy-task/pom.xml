@@ -14,9 +14,9 @@
 
 
     <modules>
-        <!-- 定时任务动态管理 - 接口访问(仅管理员可用) -->
-        <module>candy-task-api</module>
-        <!-- 定时任务动态管理 - 业务逻辑实现 service -->
+        <!-- 定时任务动态管理 - 管理端api -->
+        <module>candy-task-admin-api</module>
+        <!-- 定时任务动态管理 - 业务逻辑实现 -->
         <module>candy-task-biz</module>
     </modules>
 

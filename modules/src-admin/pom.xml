@@ -21,10 +21,10 @@
         </dependency>
 
         <!-- 引入扩展组件 -->
-        <!-- 定时任务动态管理 - 管理系统直接引入api模块 -->
+        <!-- 定时任务动态管理 - 管理端api -->
         <dependency>
             <groupId>com.cc.api</groupId>
-            <artifactId>candy-task-api</artifactId>
+            <artifactId>candy-task-admin-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- 内置接口和功能 - 管理端api -->

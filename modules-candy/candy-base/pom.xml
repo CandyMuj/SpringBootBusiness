@@ -18,7 +18,7 @@
         <module>candy-base-app-api</module>
         <!-- 内置接口和功能 - 管理端api -->
         <module>candy-base-admin-api</module>
-        <!-- 内置接口和功能 - 业务实现逻辑 -->
+        <!-- 内置接口和功能 - 业务逻辑实现 -->
         <module>candy-base-biz</module>
     </modules>
 

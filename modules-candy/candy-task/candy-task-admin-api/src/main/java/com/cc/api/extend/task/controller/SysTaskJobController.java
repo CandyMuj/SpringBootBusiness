@@ -4,7 +4,6 @@ import com.cc.api.annotations.Ann;
 import com.cc.api.extend.task.pojo.SysTaskJob;
 import com.cc.api.extend.task.service.ISysTaskJobService;
 import com.cc.api.pojo.sys.Result;
-import com.cc.api.pojo.sys.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 
@@ -31,7 +29,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/sys/task_job")
 @Api(tags = "动态定时任务配置")
-public class SysTaskJobController extends BaseController {
+public class SysTaskJobController {
     @Resource
     private ISysTaskJobService sysTaskJobService;
 
@@ -46,14 +44,8 @@ public class SysTaskJobController extends BaseController {
             @ApiParam(required = false, value = "方法参数") @RequestParam(required = false) String methodParams,
             @ApiParam(required = true, value = "cron表达式") @RequestParam String cronExpression,
             @ApiParam(required = false, value = "备注") @RequestParam(required = false) String remark,
-            @ApiParam(required = true, value = "状态（1正常 0暂停）") @RequestParam Integer jobStatus,
-            @ApiIgnore User user
+            @ApiParam(required = true, value = "状态（1正常 0暂停）") @RequestParam Integer jobStatus
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
-
         SysTaskJob taskJob = new SysTaskJob();
         taskJob.setJobId(jobId);
         taskJob.setBeanName(beanName);
@@ -71,14 +63,8 @@ public class SysTaskJobController extends BaseController {
     @ApiOperation("管理端-删除任务")
     @PostMapping("/delete")
     public Result<?> delete(
-            @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId,
-            @ApiIgnore User user
+            @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
-
         return sysTaskJobService.delete(jobId);
     }
 
@@ -86,14 +72,8 @@ public class SysTaskJobController extends BaseController {
     @ApiOperation("管理端-启动/停止任务")
     @PostMapping("/switch")
     public Result<?> switchTask(
-            @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId,
-            @ApiIgnore User user
+            @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
-
         return sysTaskJobService.switchTask(jobId);
     }
 

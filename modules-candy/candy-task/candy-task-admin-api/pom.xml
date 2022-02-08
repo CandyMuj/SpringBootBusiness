@@ -7,10 +7,10 @@
         <artifactId>candy-task</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>candy-task-api</artifactId>
+    <artifactId>candy-task-admin-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>candy-task-api</name>
+    <name>candy-task-admin-api</name>
 
 
     <dependencies>
