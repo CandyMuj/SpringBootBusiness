@@ -55,7 +55,7 @@ mybatis-plus:
   # mapper xml地址
   mapper-locations: classpath*:/mapper/**/*Mapper.xml
   # 别名配置，实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.cc.pic.api.src.pojo,com.cc.pic.api.src.pojo.vo
+  type-aliases-package: com.cc.pic.api.*.pojo,com.cc.pic.api.*.pojo.vo
   # TypeHandler 扫描路径，如果配置了该属性，SqlSessionFactoryBean 会把该包下面的类注册为对应的 TypeHandler
   type-handlers-package: com.cc.pic.api.config.handler.ibatis
   global-config:

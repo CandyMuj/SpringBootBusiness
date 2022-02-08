@@ -28,5 +28,7 @@ public class Configc {
     /**
      * 下方写关于自己业务的一些配置，避免建过多的重复文件，造成冗余 （若只需要框架，此处的配置可全部删除，可视具体情况保留需要的）
      */
+    // 文件上传到服务器的根路径(后面不要跟斜杠，我在生成文件名的时候加的有不然就重复了不好的）
+    public static final String UPLOAD_FILE_PATH = "/upload";
 
 }
