@@ -1,10 +1,8 @@
 package com.cc.pic.api;
 
-import com.cc.pic.api.config.SpringActive;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,10 +22,7 @@ public class ApiserverApplication {
     }
 
     @Bean
-    public CorsFilter corsFilter(Environment environment) {
-        // 初始化环境配置文件
-        SpringActive.init(environment.getActiveProfiles()[0]);
-
+    public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         // 允许cookies跨域
