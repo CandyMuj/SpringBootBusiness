@@ -89,6 +89,34 @@ public class SwaggerConfig {
                 .enable(Configc.GLOBAL_SWAGGER_OPEN);
     }
 
+    /**
+     * 根据自定义分组名和包路径生成docket
+     */
+    private Docket buildWithGroup(String groupName, String... basePackage) {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(this.apiInfo())
+                .groupName(groupName)
+                .select()
+                .apis(input -> {
+                    if (input != null && input.isAnnotatedWith(ApiOperation.class)) {
+                        String packg = input.declaringClass().getName();
+                        for (String s : basePackage) {
+                            if (packg.replace(s, "").split("\\.").length == 2) return true;
+                        }
+                    }
+                    return false;
+                })
+                /* 另一种实现方式，用多个apis来进行拼接，先用变量存储new的，然后循环basePackage添加apis，然后再拼接后面的paths、build等...
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.basePackage(basePackage[0]))
+                .apis(RequestHandlerSelectors.basePackage(basePackage[1]))
+                */
+                .paths(PathSelectors.any())
+                .build()
+                .globalOperationParameters(this.globalParameters())
+                .enable(Configc.GLOBAL_SWAGGER_OPEN);
+    }
+
     private List<Parameter> globalParameters() {
         List<Parameter> parameterList = new ArrayList<>();
 
