@@ -1,6 +1,8 @@
-package com.cc.api.extend.task.controller;
+package com.cc.api.extend.task.controller.web;
 
 import com.cc.api.annotations.Ann;
+import com.cc.api.annotations.ApiVersion;
+import com.cc.api.enumc.ApiGroup;
 import com.cc.api.extend.task.pojo.SysTaskJob;
 import com.cc.api.extend.task.service.ISysTaskJobService;
 import com.cc.api.pojo.sys.Result;
@@ -27,9 +29,10 @@ import javax.annotation.Resource;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/sys/task_job")
+@RequestMapping("/admin/sys/task_job")
+@ApiVersion(ApiGroup.ADMIN)
 @Api(tags = "动态定时任务配置")
-public class SysTaskJobController {
+public class WebSysTaskJobController {
     @Resource
     private ISysTaskJobService sysTaskJobService;
 

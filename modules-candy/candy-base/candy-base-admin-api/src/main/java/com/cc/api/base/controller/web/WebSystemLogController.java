@@ -6,7 +6,6 @@ import com.cc.api.base.pojo.vo.SystemLogVo;
 import com.cc.api.base.service.ISystemLogService;
 import com.cc.api.enumc.ApiGroup;
 import com.cc.api.pojo.sys.Result;
-import com.cc.api.pojo.sys.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -33,7 +32,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/system/log")
+@RequestMapping("/admin/system/log")
 @ApiVersion(ApiGroup.ADMIN)
 @Api(tags = "系统日志")
 public class WebSystemLogController {
