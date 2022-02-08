@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ProjectName SpringBootBusiness
- * @FileName TaskJobMapper
+ * @FileName SysConfigMapper
  * @Description 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！
  * @Author CandyMuj
  * @Date 2021/11/02 10:12
