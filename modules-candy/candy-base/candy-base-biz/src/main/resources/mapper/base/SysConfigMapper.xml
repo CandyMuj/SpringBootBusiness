@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.api.base.mapper.SysConfigMapper">
+    <!-- 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！-->
+    <resultMap id="SysConfig" type="SysConfig">
+        <id property="configKey" column="config_key"/>
+        <result property="configType" column="config_type"/>
+        <result property="configVal" column="config_val"/>
+        <result property="configName" column="config_name"/>
+        <result property="configDesc" column="config_desc"/>
+    </resultMap>
+
+</mapper>

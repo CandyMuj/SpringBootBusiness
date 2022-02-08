@@ -9,6 +9,7 @@ package com.cc.api.enumc;
  * @Version 1.0
  */
 public enum ApiGroup {
+    APP("应用端 1.0"),
     ADMIN("管理员端 1.0"),
     ;
 

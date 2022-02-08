@@ -20,6 +20,14 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!-- 引入扩展组件 -->
+        <!-- 内置接口和功能 - 应用端api -->
+        <dependency>
+            <groupId>com.cc.api</groupId>
+            <artifactId>candy-base-app-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 

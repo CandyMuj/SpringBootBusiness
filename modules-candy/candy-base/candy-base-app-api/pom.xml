@@ -4,32 +4,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.cc.api</groupId>
-        <artifactId>SpringBootBusiness</artifactId>
+        <artifactId>candy-base</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>modules-candy</artifactId>
+    <artifactId>candy-base-app-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>modules-candy</name>
-
-
-    <modules>
-        <!-- 此模块下的包都以candy开头 主要为一些扩展的组件，为了与主程序解耦，可以选择是否加载并启用此模块 -->
-        <!-- 定时任务动态管理 -->
-        <module>candy-task</module>
-        <!-- 内置接口和功能 -->
-        <module>candy-base</module>
-    </modules>
+    <packaging>jar</packaging>
+    <name>candy-base-app-api</name>
 
 
     <dependencies>
         <dependency>
             <groupId>com.cc.api</groupId>
-            <artifactId>candy-core</artifactId>
+            <artifactId>candy-base-biz</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
-
 
 </project>

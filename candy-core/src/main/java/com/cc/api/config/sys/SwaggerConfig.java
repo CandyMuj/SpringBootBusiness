@@ -53,6 +53,11 @@ public class SwaggerConfig {
     }
 
     @Bean
+    public Docket app() {
+        return this.buildWithGroup(ApiGroup.APP);
+    }
+
+    @Bean
     public Docket admin() {
         return this.buildWithGroup(ApiGroup.ADMIN);
     }
@@ -60,6 +65,10 @@ public class SwaggerConfig {
 
     /**
      * 通过分组注解配置，生成docket
+     * <p>
+     * 优点：修改了controller路径，不会影响文档生成；如果需要集成多个路径下的接口，一个注解即可，不用配置一长串包路径；可以使用不同的注解根据版本分组
+     * 缺点：需要在每个类上都加注解
+     * 总结：每次编写需要加注解，但是可以保证在修改包路径后不影响生成
      */
     private Docket buildWithGroup(ApiGroup apiGroup) {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -91,6 +100,10 @@ public class SwaggerConfig {
 
     /**
      * 根据自定义分组名和包路径生成docket
+     * <p>
+     * 优点：在这里配置了，接口无需加任何注解和配置，可以一劳永逸
+     * 缺点：修改了controller路径，会影响文档生成，需要在这里重新指定包路径;如果需要集成多个路径下的接口，需要配置多个路径，若修改会很麻烦；无法灵活的根据版本分组
+     * 总结：一次配置一劳永逸，但如果修改了包路径，需要来这里重新配置一下
      */
     private Docket buildWithGroup(String groupName, String... basePackage) {
         return new Docket(DocumentationType.SWAGGER_2)

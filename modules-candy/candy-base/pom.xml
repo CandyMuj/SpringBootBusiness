@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cc.api</groupId>
+        <artifactId>modules-candy</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>candy-base</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>candy-base</name>
+
+
+    <modules>
+        <!-- 内置接口和功能 - 应用端api -->
+        <module>candy-base-app-api</module>
+        <!-- 内置接口和功能 - 管理端api -->
+        <module>candy-base-admin-api</module>
+        <!-- 内置接口和功能 - 业务实现逻辑 -->
+        <module>candy-base-biz</module>
+    </modules>
+
+</project>
