@@ -34,7 +34,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/system/log")
+@RequestMapping("/admin/system/log")
 @ApiVersion(ApiGroup.ADMIN)
 @Api(tags = "系统日志")
 public class WebSystemLogController extends BaseController {
