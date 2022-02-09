@@ -13,4 +13,13 @@
     <name>candy-base-biz</name>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.cc.api</groupId>
+            <artifactId>src-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
 </project>
