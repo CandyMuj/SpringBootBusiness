@@ -34,43 +34,37 @@ public class DB {
 
     /**
      * mybatis-plus 传入page解析成result对象返回
-     *
-     * @param page
-     * @return
      */
     public static <T> Result<List<T>> getPageRes(Page<T> page) {
         Result<List<T>> result = new Result<>(page.getRecords());
         result.curPage = page.getCurrent();
         result.pageSize = page.getSize();
         result.totalCount = page.getTotal();
+        result.hasNextPage();
         return result;
     }
 
     /**
      * pagehelper 根据pageinfo解析成Result
-     *
-     * @param pageInfo
-     * @return
      */
     public static <T> Result<List<T>> getPageRes(PageInfo<T> pageInfo) {
         Result<List<T>> result = new Result<>(pageInfo.getList());
         result.curPage = (long) pageInfo.getPageNum();
         result.pageSize = (long) pageInfo.getPageSize();
         result.totalCount = pageInfo.getTotal();
+        result.hasNextPage();
         return result;
     }
 
     /**
      * pagehelper 传入page解析成result对象返回
-     *
-     * @param page
-     * @return
      */
     public static <T> Result<List<T>> getPageRes(com.github.pagehelper.Page<T> page) {
         Result<List<T>> result = new Result<>(page.getResult());
         result.curPage = (long) page.getPageNum();
         result.pageSize = (long) page.getPageSize();
         result.totalCount = page.getTotal();
+        result.hasNextPage();
         return result;
     }
 
@@ -79,6 +73,7 @@ public class DB {
         result.curPage = (long) page.getPageable().getPageNumber();
         result.pageSize = (long) page.getPageable().getPageSize();
         result.totalCount = page.getTotalElements();
+        result.hasNextPage();
         return result;
     }
 

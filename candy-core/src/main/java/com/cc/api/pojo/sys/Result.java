@@ -3,7 +3,11 @@ package com.cc.api.pojo.sys;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.cc.api.utils.DB;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Map;
 
 import static com.cc.api.config.StatusCode.FAIL;
 import static com.cc.api.config.StatusCode.SUCCESS;
@@ -16,26 +20,42 @@ import static com.cc.api.config.StatusCode.SUCCESS;
  * @Date 2019/12/25 11:49
  * @Version 1.0
  */
+@Data
 @Slf4j
 public class Result<T> {
+    @ApiModelProperty(value = "成功标识 布尔类型")
+    public boolean success;
+    @ApiModelProperty(value = "成功标识 1成功 0失败")
     public int code;
-    public Long curPage;
-    public Long totalCount;
-    public Long pageSize;
+    @ApiModelProperty(value = "返回错误代码")
     public String errCode;
+    @ApiModelProperty(value = "返回处理消息")
     public String msg;
+    @ApiModelProperty(value = "返回数据对象")
     public T data;
+    @ApiModelProperty(value = "扩展数据")
+    public Map<String, Object> extData;
+
+    // --------------------- 分页相关
+    @ApiModelProperty(value = "分页：当前页")
+    public Long curPage;
+    @ApiModelProperty(value = "分页：总数据数")
+    public Long totalCount;
+    @ApiModelProperty(value = "分页：每页的数据数量")
+    public Long pageSize;
+    @ApiModelProperty(value = "分页：是否还有下一页")
+    public Boolean hasNext;
+
 
     private Result() {
     }
 
     public Result(T data) {
-        this.code = SUCCESS;
-        this.data = data;
+        this(SUCCESS, data, null);
     }
 
     public Result(int code) {
-        this.code = code;
+        this(code, null);
     }
 
     public Result(T data, String msg) {
@@ -55,6 +75,7 @@ public class Result<T> {
     }
 
     public Result(int code, T data, String errCode, String msg) {
+        this.success = (SUCCESS == code);
         this.code = code;
         this.data = data;
         this.errCode = errCode;
@@ -63,6 +84,10 @@ public class Result<T> {
         this.printLog();
     }
 
+
+    public void hasNextPage() {
+        this.setHasNext((long) Math.ceil(this.totalCount / (double) this.pageSize) > this.curPage);
+    }
 
     private void printLog() {
         if (StrUtil.isNotBlank(this.msg)) {
