@@ -1,5 +1,6 @@
 package com.cc.api.utils;
 
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cc.api.pojo.sys.Result;
 import com.github.pagehelper.PageInfo;
@@ -7,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.NoTransactionException;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @ProJectName APIServer
@@ -30,6 +34,21 @@ public class DB {
         } catch (NoTransactionException e) {
             log.warn("当前没有事务存在");
         }
+    }
+
+    /**
+     * 通过orderby的map对象，解析出orderby的字符串
+     * 由于排序是有权重的，因此返回的语句会按照map顺序生成
+     * <p>
+     * key: 排序字段
+     * val: 是否升序 默认：true
+     */
+    public static String orderByStr(Map<String, Boolean> orderMap) {
+        List<String> strList = new ArrayList<>();
+        for (Map.Entry<String, Boolean> e : orderMap.entrySet()) {
+            strList.add(e.getKey().concat(Optional.ofNullable(e.getValue()).orElse(true) ? " ASC" : " DESC"));
+        }
+        return strList.size() != 0 ? "ORDER BY ".concat(CollUtil.join(strList, ",")) : "";
     }
 
     /**
