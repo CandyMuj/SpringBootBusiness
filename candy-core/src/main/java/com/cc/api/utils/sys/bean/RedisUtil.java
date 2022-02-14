@@ -1,5 +1,8 @@
 package com.cc.api.utils.sys.bean;
 
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 /**
  * @ProJectName APIServer
@@ -590,4 +594,29 @@ public class RedisUtil {
             return 0;
         }
     }
+
+
+    //===============================扩展方法=================================
+
+    /**
+     * 缓存并获取数据
+     */
+    public <T> T get(String key, int seconds, TypeReference<T> clazz, Supplier<T> select) {
+        Object o = this.get(key);
+        String json = (o == null ? null : o.toString());
+        if (StrUtil.isBlank(json)) {
+            T t = select.get();
+            this.set(key, JSONObject.toJSONString(t), seconds);
+            return t;
+        }
+        return JSONObject.parseObject(json, clazz);
+    }
+
+    /**
+     * 缓存并获取数据（永不过期）
+     */
+    public <T> T get(String key, TypeReference<T> clazz, Supplier<T> select) {
+        return this.get(key, 0, clazz, select);
+    }
+
 }
