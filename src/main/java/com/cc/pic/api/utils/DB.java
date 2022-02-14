@@ -75,6 +75,10 @@ public class DB {
         return result;
     }
 
+    public static <T> Result<List<T>> getPageRes(List<T> data) {
+        return getPageRes(new PageInfo<>(data));
+    }
+
     /**
      * pagehelper 传入page解析成result对象返回
      */
