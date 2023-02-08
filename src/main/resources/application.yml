@@ -6,7 +6,7 @@ spring:
   profiles:
     # 本地开发环境 dev
     # 生产环境 prod
-    active: prod
+    active: dev
   devtools:
     restart:
       enabled: false

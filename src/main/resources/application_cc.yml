@@ -23,7 +23,7 @@ modules-candy:
 dev:
   modules-candy:
     candy-task:
-      open: true
+      open: false
       cluster: true
 prod:
   global:
