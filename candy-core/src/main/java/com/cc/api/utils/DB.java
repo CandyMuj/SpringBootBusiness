@@ -28,9 +28,9 @@ public class DB {
     public static void setRollbackOnly() {
         try {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            log.warn("当前事务回滚成功");
+            log.debug("当前事务回滚成功");
         } catch (NoTransactionException e) {
-            log.warn("当前没有事务存在");
+            log.debug("当前没有事务存在");
         }
     }
 
