@@ -6,8 +6,6 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SchedulingConfig
  * @Description 执行定时任务的线程池配置类
  * @Author CandyMuj
  * @Date 2021/11/1 17:01

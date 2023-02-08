@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SystemLogController
  * @Description 第三方服务的一些接口
  * @Author CandyMuj
  * @Date 2020/09/30 14:58

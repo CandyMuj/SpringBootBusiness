@@ -28,8 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.Charset;
 
 /**
- * @ProjectName api
- * @FileName ThirdServiceImpl
  * @Description 第三方服务接口封装类
  * @Author CandyMuj
  * @Date 2020/10/9 9:31

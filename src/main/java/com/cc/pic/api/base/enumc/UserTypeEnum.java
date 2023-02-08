@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @ProjectName api
- * @FileName UserTypeEnum
  * @Description 用户类型及客户端类型
  * @Author CandyMuj
  * @Date 2020/6/11 14:50

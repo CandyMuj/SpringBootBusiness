@@ -1,8 +1,6 @@
 package com.cc.pic.api.src.config;
 
 /**
- * @ProjectName api
- * @FileName CacheKey
  * @Description
  * @Author CandyMuj
  * @Date 2020/5/18 15:36

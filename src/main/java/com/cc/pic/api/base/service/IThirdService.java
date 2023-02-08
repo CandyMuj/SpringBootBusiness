@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @ProjectName api
- * @FileName IThirdService
  * @Description
  * @Author CandyMuj
  * @Date 2020/10/9 9:31

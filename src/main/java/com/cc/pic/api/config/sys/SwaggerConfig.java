@@ -26,8 +26,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @ProJectName APIServer
- * @FileName SwaggerConfig
  * @Description Swagger 配置
  * @Author CandyMuj
  * @Date 2019/12/23 10:45

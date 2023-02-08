@@ -6,8 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.cc.pic.api.config.Configc;
 
 /**
- * @ProjectName api
- * @FileName JSONUtil
  * @Description 进一步封装ali的json对象方法扩展
  * @Author CandyMuj
  * @Date 2020/6/9 13:28

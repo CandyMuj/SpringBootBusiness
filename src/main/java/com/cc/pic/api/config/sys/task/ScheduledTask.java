@@ -5,8 +5,6 @@ import org.springframework.scheduling.config.CronTask;
 import java.util.concurrent.ScheduledFuture;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName ScheduledTask
  * @Description ScheduledFuture的包装类。
  * ScheduledFuture是ScheduledExecutorService定时任务线程池的执行结果。
  * @Author CandyMuj

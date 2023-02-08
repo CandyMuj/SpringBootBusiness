@@ -26,8 +26,6 @@ import java.util.regex.Pattern;
 import static com.cc.pic.api.config.SecurityConstants.REQ_HEADER;
 
 /**
- * @ProJectName APIServer
- * @FileName AuthInterceptor
  * @Description 接口请求时认证校验
  * @Author CandyMuj
  * @Date 2019/12/26 10:39

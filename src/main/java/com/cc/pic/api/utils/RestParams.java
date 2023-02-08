@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @ProjectName api
- * @FileName RestParams
  * @Description
  * @Author CandyMuj
  * @Date 2021/8/5 14:26

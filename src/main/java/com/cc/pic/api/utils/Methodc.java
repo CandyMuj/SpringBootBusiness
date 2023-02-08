@@ -19,8 +19,6 @@ import java.util.regex.Pattern;
 import static com.cc.pic.api.config.Configc.DEFAULT_DATEFORMAT;
 
 /**
- * @ProJectName server
- * @FileName Methodc
  * @Description 本项目所需要的一些公用的方法
  * @Author CandyMuj
  * @Date 2019/5/27 14:06

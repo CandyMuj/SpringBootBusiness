@@ -1,8 +1,6 @@
 package com.cc.pic.api.base.enumc;
 
 /**
- * @ProjectName api
- * @FileName LogType
  * @Description 日志表-日志类型
  * @Author CandyMuj
  * @Date 2020/10/9 9:34

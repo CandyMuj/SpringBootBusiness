@@ -10,8 +10,6 @@ import java.nio.charset.StandardCharsets;
 import static com.cc.pic.api.config.SecurityConstants.*;
 
 /**
- * @ProJectName APIServer
- * @FileName AuthUtil
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/30 16:18

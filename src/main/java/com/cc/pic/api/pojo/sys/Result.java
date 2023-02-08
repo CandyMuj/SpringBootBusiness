@@ -13,8 +13,6 @@ import static com.cc.pic.api.config.StatusCode.FAIL;
 import static com.cc.pic.api.config.StatusCode.SUCCESS;
 
 /**
- * @ProJectName APIServer
- * @FileName Result
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/25 11:49

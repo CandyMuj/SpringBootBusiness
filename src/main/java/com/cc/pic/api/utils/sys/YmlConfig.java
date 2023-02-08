@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.util.*;
 
 /**
- * @ProJectName APIServer
- * @FileName YmlConfig
  * @Description 解析ymlconfig配置文件, 非实时加载，仅加载一次做缓存
  * @Author CandyMuj
  * @Date 2019/12/31 11:42

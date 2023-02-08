@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @FileName SysConfig
  * @Description 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！
  * @Author CandyMuj
  * @Version 1.0

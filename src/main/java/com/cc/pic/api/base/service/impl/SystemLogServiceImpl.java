@@ -23,8 +23,6 @@ import java.util.Map;
 
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SystemLogServiceImpl
  * @Description
  * @Author CandyMuj
  * @Date 2020/09/30 14:58

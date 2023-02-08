@@ -8,8 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SystemLogMapper
  * @Description
  * @Author CandyMuj
  * @Date 2020/09/30 14:58

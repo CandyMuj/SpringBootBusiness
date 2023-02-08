@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * @ProjectName SpringBootBusiness-single
- * @FileName ModulesCandyConfig
  * @Description 自定义模块/扩展组件的配置 实体类
  * 具体配置的含义，详见 application_cc.yml 中的注释
  * @Author CandyMuj

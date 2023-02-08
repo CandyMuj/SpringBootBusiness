@@ -6,8 +6,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
- * @ProJectName APIServer
- * @FileName MD5
  * @Description
  * @Author CandyMuj
  * @Date 2020/4/11 14:14

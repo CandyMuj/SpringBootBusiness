@@ -1,8 +1,6 @@
 package com.cc.pic.api.enumc;
 
 /**
- * @ProJectName AmericanDelicacy
- * @FileName Enable
  * @Description
  * @Author CandyMuj
  * @Date 2020/4/9 13:09

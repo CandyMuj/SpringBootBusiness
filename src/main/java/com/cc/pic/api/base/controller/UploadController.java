@@ -22,8 +22,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 /**
- * @ProJectName API
- * @FileName UploadController
  * @Description
  * @Author CandyMuj
  * @Date 2020/4/9 22:28

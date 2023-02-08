@@ -6,8 +6,6 @@ import com.cc.pic.api.exception.CandyException;
 import com.cc.pic.api.utils.Methodc;
 
 /**
- * @ProJectName APIServer
- * @FileName UeditorUtil
  * @Description 百度富文本工具类
  * @Author CandyMuj
  * @Date 2020/1/9 16:27

@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 /**
- * @ProJectName APIServer
- * @FileName TestController
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/23 16:19

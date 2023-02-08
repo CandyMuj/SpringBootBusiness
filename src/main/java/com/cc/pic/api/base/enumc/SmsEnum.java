@@ -1,8 +1,6 @@
 package com.cc.pic.api.base.enumc;
 
 /**
- * @ProjectName api
- * @FileName SmsEnum
  * @Description 验证码类型，及其对应的redis key
  * @Author CandyMuj
  * @Date 2020/10/10 11:39

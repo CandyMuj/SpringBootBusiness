@@ -19,8 +19,6 @@ import static com.cc.pic.api.config.SecurityConstants.EXPIRATION;
 import static com.cc.pic.api.config.SecurityConstants.TOKEN_GENERATE_ENUM;
 
 /**
- * @ProJectName APIServer
- * @FileName JwtTokenGenerate
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/30 17:16

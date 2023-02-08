@@ -16,8 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
- * @ProJectName APIServer
- * @FileName RedisUtil
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/25 16:36

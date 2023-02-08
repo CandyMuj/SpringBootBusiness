@@ -1,8 +1,6 @@
 package com.cc.pic.api.enumc.sys;
 
 /**
- * @ProJectName APIServer
- * @FileName TokenGenerateEnum
  * @Description token 生成策略;一个用户可能有多个有效的token，但是一个token只对应一个用户
  * 说明一点：不失效并不代表不过期；失效的含义是：在未过期的情况下，手动清除这个token那么就是使其失效，其他的情况就自己悟（比如什么是失效什么是过期如果过期了没失效什么的乱七八糟的东西的）
  * @Author CandyMuj

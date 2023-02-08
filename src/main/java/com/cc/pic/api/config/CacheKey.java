@@ -3,8 +3,6 @@ package com.cc.pic.api.config;
 import com.cc.pic.api.base.enumc.SmsEnum;
 
 /**
- * @ProJectName APIServer
- * @FileName CacheKey
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/27 17:33

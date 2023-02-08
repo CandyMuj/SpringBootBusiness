@@ -9,8 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SpringInitConstruct
  * @Description 在springboot启动时，进行的一些系统初始执行的逻辑
  * PostConstruct的方式初始化: @PostConstruct注解的方法将会在依赖注入完成后被自动调用。
  * @Author CandyMuj

@@ -6,7 +6,6 @@ import com.cc.pic.api.exception.CandyException;
 import java.util.Arrays;
 
 /**
- * @FileName SpringActive
  * @Description SpringBoot环境信息
  * @Author CandyMuj
  * @Date 2021/10/19 16:37

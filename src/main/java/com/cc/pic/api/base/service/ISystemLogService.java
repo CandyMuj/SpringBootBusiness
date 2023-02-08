@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName ISystemLogService
  * @Description
  * @Author CandyMuj
  * @Date 2020/09/30 14:58

@@ -19,8 +19,6 @@ import javax.annotation.Resource;
 import static com.cc.pic.api.config.SecurityConstants.REQ_HEADER;
 
 /**
- * @ProJectName APIServer
- * @FileName TokenArgumentResolver
  * @Description Token转化为User对象
  * @Author CandyMuj
  * @Date 2019/12/24 17:28

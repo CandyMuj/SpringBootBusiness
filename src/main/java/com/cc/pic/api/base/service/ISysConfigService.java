@@ -5,8 +5,6 @@ import com.cc.pic.api.base.enumc.SysConfigKey;
 import com.cc.pic.api.base.pojo.SysConfig;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName ISysConfigService
  * @Description 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！
  * @Author CandyMuj
  * @Date 2021/11/02 10:12

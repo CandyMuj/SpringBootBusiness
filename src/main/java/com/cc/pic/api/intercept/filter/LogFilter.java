@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 /**
- * @ProJectName APIServer
- * @FileName LogFilter
  * @Description 日志过滤器
  * @Author CandyMuj
  * @Date 2019/12/26 14:21

@@ -19,8 +19,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * @ProjectName SpringBootBusiness-single
- * @FileName SysTaskJobRunner
  * @Description 实现了CommandLineRunner接口的SysJobRunner类，当spring boot项目启动完成后，加载数据库里状态为正常的定时任务。
  * @Author CandyMuj
  * @Date 2021/11/2 13:38

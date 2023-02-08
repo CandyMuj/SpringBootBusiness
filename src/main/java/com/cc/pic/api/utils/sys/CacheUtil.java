@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @ProJectName APIServer
- * @FileName CacheUtil
  * @Description 如果redis为空时，那么这个就是替代方案，使用本地内存做处理
  * @Author CandyMuj
  * @Date 2019/12/30 10:16

@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.annotation.Resource;
 
 /**
- * @ProjectName api
- * @FileName BaseController
  * @Description
  * @Author CandyMuj
  * @Date 2020/6/9 14:30
