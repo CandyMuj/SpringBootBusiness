@@ -4,8 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @ProJectName APIServer
- * @FileName MimeType
  * @Description 关于mime类型的转换
  * @Author CandyMuj
  * @Date 2020/1/13 15:49

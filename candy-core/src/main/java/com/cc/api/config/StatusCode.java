@@ -1,8 +1,6 @@
 package com.cc.api.config;
 
 /**
- * @ProJectName APIServer
- * @FileName ErrorCode
  * @Description 状态码 错误码等配置
  * @Author CandyMuj
  * @Date 2019/12/24 17:21

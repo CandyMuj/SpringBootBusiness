@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @ProJectName api
- * @FileName MybatisPlusConfig
  * @Description
  * @Author CandyMuj
  * @Date 2020/3/26 16:14

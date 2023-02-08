@@ -22,8 +22,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @ProJectName APIServer
- * @FileName OSSUtil
  * @Description 阿里云oss工具，支持多账号多bucket
  * @Author CandyMuj
  * @Date 2020/1/8 17:08

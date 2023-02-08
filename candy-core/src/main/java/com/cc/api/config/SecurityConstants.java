@@ -6,8 +6,6 @@ import com.cc.api.utils.sys.YmlConfig;
 import java.util.Optional;
 
 /**
- * @ProJectName APIServer
- * @FileName SecurityConstants
  * @Description 关于安全 token 相关的一些配置
  * 注意 ！！！！
  * 此类是鉴权相关的配置，最好只做修改，且改该改的，不要新增和删除。。。

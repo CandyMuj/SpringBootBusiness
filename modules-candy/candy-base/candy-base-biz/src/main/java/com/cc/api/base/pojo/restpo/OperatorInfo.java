@@ -3,8 +3,6 @@ package com.cc.api.base.pojo.restpo;
 import lombok.Data;
 
 /**
- * @ProjectName api
- * @FileName OperatorInfo
  * @Description 查询运营商信息返回实体
  * @Author CandyMuj
  * @Date 2020/10/9 9:51

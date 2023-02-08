@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SystemLogController
  * @Description
  * @Author CandyMuj
  * @Date 2020/09/30 14:58

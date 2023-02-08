@@ -1,8 +1,6 @@
 package com.cc.api.config.sys;
 
 /**
- * @ProJectName APIServer
- * @FileName IOCConfig
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/30 11:26

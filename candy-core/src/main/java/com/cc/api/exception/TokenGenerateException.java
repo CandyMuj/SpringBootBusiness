@@ -1,8 +1,6 @@
 package com.cc.api.exception;
 
 /**
- * @ProJectName APIServer
- * @FileName TokenGenerateException
  * @Description token生成异常
  * @Author CandyMuj
  * @Date 2019/12/30 17:32

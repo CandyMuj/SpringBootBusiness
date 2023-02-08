@@ -6,8 +6,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SpringContextUtils
  * @Description
  * @Author CandyMuj
  * @Date 2021/11/1 17:09

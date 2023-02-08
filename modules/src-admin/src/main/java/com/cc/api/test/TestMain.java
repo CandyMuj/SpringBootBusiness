@@ -3,8 +3,6 @@ package com.cc.api.test;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @ProJectName APIServer
- * @FileName TestMain
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/23 16:19

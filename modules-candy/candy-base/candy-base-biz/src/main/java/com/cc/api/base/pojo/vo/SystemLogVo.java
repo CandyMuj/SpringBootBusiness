@@ -8,8 +8,6 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SystemLog
  * @Description
  * @Author CandyMuj
  * @Date 2020/09/30 14:58

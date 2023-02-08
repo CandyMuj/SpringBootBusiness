@@ -5,8 +5,6 @@ import com.cc.api.pojo.MapPoint;
 import java.math.BigDecimal;
 
 /**
- * @ProJectName APIServer
- * @FileName MapUtil
  * @Description
  * @Author CandyMuj
  * @Date 2020/4/12 0:29

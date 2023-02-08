@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @ProjectName api
- * @FileName ScheduleTask
  * @Description 定时任务
  * @Author CandyMuj
  * @Date 2020/10/28 11:34

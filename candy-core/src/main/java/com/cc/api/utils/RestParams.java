@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @ProjectName api
- * @FileName RestParams
  * @Description 接口请求的公共参数定义和获取，如header参数
  * @Author CandyMuj
  * @Date 2021/8/5 13:59

@@ -3,8 +3,6 @@ package com.cc.api.exception;
 import com.cc.api.config.StatusCode;
 
 /**
- * @ProJectName APIServer
- * @FileName AuthException
  * @Description 认证登录token验证失败的异常
  * @Author CandyMuj
  * @Date 2019/12/25 14:45

@@ -1,8 +1,6 @@
 package com.cc.api.enumc;
 
 /**
- * @ProjectName api
- * @FileName ApiGroup
  * @Description swagger文档分组注解配置
  * @Author CandyMuj
  * @Date 2020/7/17 16:47

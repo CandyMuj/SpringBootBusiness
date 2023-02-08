@@ -5,8 +5,6 @@ import com.cc.api.exception.CandyException;
 import lombok.Getter;
 
 /**
- * @ProjectName SpringBootBusiness-single
- * @FileName JobKey
  * @Description 定时任务在内存中的唯一标识
  * @Author CandyMuj
  * @Date 2021/11/4 16:39

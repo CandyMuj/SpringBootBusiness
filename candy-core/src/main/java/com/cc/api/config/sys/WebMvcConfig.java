@@ -12,8 +12,6 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @ProJectName APIServer
- * @FileName WebMvcConfig
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/25 11:05

@@ -16,8 +16,6 @@ import redis.clients.jedis.JedisPoolConfig;
 import javax.annotation.Resource;
 
 /**
- * @ProjectName api
- * @FileName RedisCacheConfig
  * @Description 增强redis
  * @Author CandyMuj
  * @Date 2020/4/19 13:14

@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * @ProjectName api
- * @FileName VerifyCodeUtils
  * @Description 生成图形验证码的工具
  * @Author CandyMuj
  * @Date 2020/10/13 15:17

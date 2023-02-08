@@ -19,8 +19,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * @ProjectName SpringBootBusiness-single
- * @FileName SysConfigServiceImpl
  * @Description
  * @Author CandyMuj
  * @Date 2022/2/8 10:27

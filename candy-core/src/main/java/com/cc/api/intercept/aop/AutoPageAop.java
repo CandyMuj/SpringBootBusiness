@@ -12,8 +12,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @ProJectName api
- * @FileName AutoPageAop
  * @Description
  * @Author CandyMuj
  * @Date 2020/3/26 16:23

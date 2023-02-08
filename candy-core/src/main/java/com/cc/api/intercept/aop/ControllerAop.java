@@ -13,8 +13,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.Arrays;
 
 /**
- * @ProJectName APIServer
- * @FileName ControllerAop
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/25 17:14

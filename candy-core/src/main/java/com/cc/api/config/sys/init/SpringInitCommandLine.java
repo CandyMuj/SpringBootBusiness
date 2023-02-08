@@ -6,8 +6,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SpringInitCommandLine
  * @Description 在springboot启动时，进行的一些系统初始执行的逻辑
  * CommandLineRunner的方式初始化: 在程序启动成功后调用一次实现了CommandLineRunner接口的run方法，通过order=1指定最先执此类（默认值是一个很大的值，可以点order进去看）
  * @Author CandyMuj

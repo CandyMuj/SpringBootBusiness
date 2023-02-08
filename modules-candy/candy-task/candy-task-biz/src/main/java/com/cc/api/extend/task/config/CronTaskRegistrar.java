@@ -12,8 +12,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName CronTaskRegistrar
  * @Description 添加定时任务注册类，用来增加、删除定时任务。
  * @Author CandyMuj
  * @Date 2021/11/1 17:33

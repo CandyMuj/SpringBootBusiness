@@ -3,8 +3,6 @@ package com.cc.api.config;
 import com.cc.api.utils.sys.YmlConfig;
 
 /**
- * @ProJectName APIServer
- * @FileName Configc
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/24 17:13

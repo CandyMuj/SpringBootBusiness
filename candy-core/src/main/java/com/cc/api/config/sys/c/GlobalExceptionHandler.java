@@ -15,8 +15,6 @@ import javax.validation.ValidationException;
 
 
 /**
- * @ProJectName APIServer
- * @FileName GlobalExceptionHandler
  * @Description 全局异常处理
  * @Author CandyMuj
  * @Date 2019/12/25 15:00

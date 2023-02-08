@@ -1,8 +1,6 @@
 package com.cc.api.exception;
 
 /**
- * @ProJectName APIServer
- * @FileName AuthException
  * @Description 其他的异常自定义抛出类
  * @Author CandyMuj
  * @Date 2019/12/25 14:45

@@ -19,8 +19,6 @@ import static com.cc.api.config.SecurityConstants.EXPIRATION;
 import static com.cc.api.config.SecurityConstants.JWT_SECRET;
 
 /**
- * @ProJectName APIServer
- * @FileName JwtTokenUtil
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/25 11:45

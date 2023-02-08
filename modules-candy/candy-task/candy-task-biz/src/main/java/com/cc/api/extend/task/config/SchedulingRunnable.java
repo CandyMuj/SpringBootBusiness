@@ -12,8 +12,6 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 /**
- * @ProjectName SpringBootBusiness
- * @FileName SchedulingRunnable
  * @Description Runnable接口实现类，被定时任务线程池调用，用来执行指定bean里面的方法。
  * @Author CandyMuj
  * @Date 2021/11/1 17:04

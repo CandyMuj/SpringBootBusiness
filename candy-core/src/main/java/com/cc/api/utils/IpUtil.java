@@ -3,8 +3,6 @@ package com.cc.api.utils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @ProjectName api
- * @FileName IpUtil
  * @Description IP地址工具类
  * @Author CandyMuj
  * @Date 2020/10/20 16:26

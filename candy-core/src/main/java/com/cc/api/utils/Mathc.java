@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * @ProJectName huahui_server
- * @FileName Mathc
  * @Description
  * @Author CandyMuj
  * @Date 2019/4/4 13:00

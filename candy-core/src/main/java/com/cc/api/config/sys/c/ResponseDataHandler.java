@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * @ProJectName APIServer
- * @FileName ResponseDataHandler
  * @Description 针对返回值为Result类型的数据进行处理
  * @Author CandyMuj
  * @Date 2019/12/27 17:04

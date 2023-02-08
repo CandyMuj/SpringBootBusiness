@@ -1,8 +1,6 @@
 package com.cc.api.base.enumc;
 
 /**
- * @ProjectName api
- * @FileName DictLimitEnum
  * @Description
  * @Author CandyMuj
  * @Date 2020/5/15 15:53

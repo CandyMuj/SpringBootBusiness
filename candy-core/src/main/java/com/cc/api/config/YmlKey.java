@@ -1,8 +1,6 @@
 package com.cc.api.config;
 
 /**
- * @ProJectName APIServer
- * @FileName YmlKey
  * @Description 系统yml配置文件中的key（此系统禁止使用properties问题）
  * @Author CandyMuj
  * @Date 2020/1/9 15:22

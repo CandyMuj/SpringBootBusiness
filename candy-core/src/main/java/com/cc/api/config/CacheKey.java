@@ -1,8 +1,6 @@
 package com.cc.api.config;
 
 /**
- * @ProJectName APIServer
- * @FileName CacheKey
  * @Description
  * @Author CandyMuj
  * @Date 2019/12/27 17:33
