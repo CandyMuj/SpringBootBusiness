@@ -43,7 +43,7 @@ public class SysTaskJobRunner implements CommandLineRunner {
         List<SysTaskJob> jobList = sysTaskJobService.getSysJobListByStatus(Enable.ENABLE);
         if (CollUtil.isNotEmpty(jobList)) {
             for (SysTaskJob job : jobList) {
-                JobKey jobKey = JobKey.jobKey(job.getJobId());
+                JobKey jobKey = JobKey.jobKey(job.getId());
                 cronTaskRegistrar.addCronTask(
                         jobKey,
                         new SchedulingRunnable(job.getBeanName(), job.getMethodName(), job.getMethodParams()),
@@ -74,7 +74,7 @@ public class SysTaskJobRunner implements CommandLineRunner {
         cronTaskRegistrar.addCronTask(listenerJobKey, () -> {
             // 从数据库获取：仅获取启用（正常）状态的定时任务列表
             Map<JobKey, SysTaskJob> dataBaseEnableJobMap = sysTaskJobService.getSysJobListByStatus(Enable.ENABLE).stream().collect(
-                    Collectors.toMap(job -> JobKey.jobKey(job.getJobId()), Function.identity())
+                    Collectors.toMap(job -> JobKey.jobKey(job.getId()), Function.identity())
             );
             Set<JobKey> jobKeySet = cronTaskRegistrar.jobKeySet();
             // 循环结束后，剩下的就是：数据库中不存在，定时任务中存在 需要移除的定时任务

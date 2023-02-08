@@ -48,7 +48,7 @@ public class WebSysTaskJobController {
             @ApiParam(required = true, value = "状态（1正常 0暂停）") @RequestParam Integer jobStatus
     ) {
         SysTaskJob taskJob = new SysTaskJob();
-        taskJob.setJobId(jobId);
+        taskJob.setId(jobId);
         taskJob.setBeanName(beanName);
         taskJob.setMethodName(methodName);
         taskJob.setMethodParams(methodParams);
