@@ -89,7 +89,11 @@ public class Result<T> {
 
     private void printLog() {
         if (StrUtil.isNotBlank(this.msg)) {
-            log.debug("Result Msg ===> {}", this.msg);
+            if (this.success) {
+                log.debug("Result Msg ===> {}", this.msg);
+            } else {
+                log.warn("Result Msg ===> {}", this.msg);
+            }
         }
     }
 
