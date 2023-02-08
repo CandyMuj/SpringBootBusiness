@@ -1,6 +1,7 @@
 package com.cc.pic.api.config.sys.c;
 
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONConfig;
+import cn.hutool.json.JSONUtil;
 import com.cc.pic.api.config.Configc;
 import com.cc.pic.api.pojo.sys.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,7 @@ public class ResponseDataHandler implements ResponseBodyAdvice {
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         if (o != null) {
             log.info("handle responseData...");
-            return JSONObject.parseObject(JSONObject.toJSONStringWithDateFormat(o, Configc.DEFAULT_DATEFORMAT));
+            return JSONUtil.parseObj(JSONUtil.toJsonStr(o, JSONConfig.create().setDateFormat(Configc.DEFAULT_DATEFORMAT)));
         }
 
         return null;
