@@ -1,6 +1,11 @@
 package com.cc.pic.api.utils;
 
+import cn.hutool.core.util.StrUtil;
+import com.cc.pic.api.utils.sys.HttpContextUtil;
+
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @Description IP地址工具类
@@ -172,29 +177,52 @@ public class IpUtil {
         return (userIp >= begin) && (userIp <= end);
     }
 
+    /**
+     * 获取用户请求的真实IP地址
+     * <p>
+     * 使用Nginx等反向代理软件， 则不能通过request.getRemoteAddr()获取IP地址
+     * 如果使用了多级反向代理的话，X-Forwarded-For的值并不止一个，而是一串IP地址，X-Forwarded-For中第一个非unknown的有效IP字符串，则为真实IP地址
+     * <p>
+     * 为了更加精确，还会从网卡获取ip
+     */
     public static String getRealIP(HttpServletRequest request) {
-        // 获取客户端ip地址
-        String clientIp = request.getHeader("x-forwarded-for");
-
-        if (clientIp == null || clientIp.length() == 0 || "unknown".equalsIgnoreCase(clientIp)) {
-            clientIp = request.getRemoteAddr();
+        if (request == null) return null;
+        String ipAddress = request.getHeader("X-Forwarded-For");
+        if (StrUtil.isBlank(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("Proxy-Client-IP");
+        }
+        if (StrUtil.isBlank(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (StrUtil.isBlank(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (StrUtil.isBlank(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (StrUtil.isBlank(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+            ipAddress = request.getRemoteAddr();
+            if (ipAddress.equals("127.0.0.1") || ipAddress.equals("0:0:0:0:0:0:0:1")) {
+                // 根据网卡取本机配置的IP
+                try {
+                    InetAddress inet = InetAddress.getLocalHost();
+                    ipAddress = inet.getHostAddress();
+                } catch (UnknownHostException e) {
+                    ipAddress = null;
+                }
+            }
         }
 
-        String[] clientIps = clientIp.split(",");
-        if (clientIps.length <= 1) return clientIp.trim();
-
-        // 判断是否来自CDN
-        if (isComefromCDN(request)) {
-            if (clientIps.length >= 2) return clientIps[clientIps.length - 2].trim();
+        // 对于通过多个代理的情况，第一个IP为客户端真实IP，多个IP按照','分割
+        if (ipAddress != null && ipAddress.indexOf(",") > 0) {
+            ipAddress = ipAddress.split(",")[0];
         }
 
-        return clientIps[clientIps.length - 1].trim();
+        return ipAddress;
     }
 
-    private static boolean isComefromCDN(HttpServletRequest request) {
-        String host = request.getHeader("host");
-        return host.contains("www.189.cn") || host.contains("shouji.189.cn") || host.contains(
-                "image2.chinatelecom-ec.com") || host.contains(
-                "image1.chinatelecom-ec.com");
+    public static String getRealIP() {
+        return getRealIP(HttpContextUtil.getHttpServletRequest());
     }
+
 }

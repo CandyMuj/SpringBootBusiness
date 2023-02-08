@@ -1,5 +1,7 @@
 package com.cc.pic.api.intercept.aop;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.TimeInterval;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -52,17 +54,17 @@ public class ControllerAop {
      */
     @Around("cutOfAll()")
     public Object cutOfAll(ProceedingJoinPoint pjp) throws Throwable {
-        long startTime = System.currentTimeMillis();
+        TimeInterval timer = DateUtil.timer();
 
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         if (signature != null) {
-            log.info("CLASS_METHOD : {}.{}", signature.getDeclaringTypeName(), signature.getName());
-            log.info("ARGS : {}", Arrays.toString(pjp.getArgs()));
+            log.debug("CLASS_METHOD : {}.{}", signature.getDeclaringTypeName(), signature.getName());
+            log.debug("ARGS : {}", Arrays.toString(pjp.getArgs()));
         }
 
         // 绝对不能因为上方判断为空就返回 Result.Error 因为这个切点是拦截的所有请求，并不是所有的都返回的是Result 有可能是其他对象，甚至是流;那样就篡改了真实的返回数据了
         Object result = pjp.proceed();
-        log.info("{} use time: {}", pjp.getSignature(), (System.currentTimeMillis() - startTime));
+        log.debug("{} use time: {}ms", pjp.getSignature(), timer.interval());
         return result;
     }
 
