@@ -43,7 +43,7 @@
 
         <aliyun-sdk-core.version>4.5.1</aliyun-sdk-core.version>
         <aliyun-sdk-oss.version>3.8.0</aliyun-sdk-oss.version>
-        <weixin-sdk-binarywang.version>3.3.0</weixin-sdk-binarywang.version>
+        <weixin-sdk-binarywang.version>4.4.0</weixin-sdk-binarywang.version>
     </properties>
 
 
