@@ -2,11 +2,11 @@ package com.cc.pic.api.base.controller;
 
 import com.cc.pic.api.annotations.ApiVersion;
 import com.cc.pic.api.base.controller.base.BaseController;
-import com.cc.pic.api.enumc.ApiGroup;
-import com.cc.pic.api.pojo.sys.Result;
 import com.cc.pic.api.base.enumc.LogType;
 import com.cc.pic.api.base.enumc.SmsEnum;
 import com.cc.pic.api.base.service.IThirdService;
+import com.cc.pic.api.enumc.ApiGroup;
+import com.cc.pic.api.pojo.sys.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -66,7 +66,7 @@ public class ThirdController extends BaseController {
         }
 
         Result<?> result = thirdService.check(request, smsEnum, phone, smsCode);
-        systemLogService.ins(LogType.IFACES, "短信-校验验证码", request, result);
+        sysLogService.ins(LogType.IFACES, "短信-校验验证码", request, result);
         return result;
     }
 

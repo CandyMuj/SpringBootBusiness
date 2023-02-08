@@ -1,7 +1,7 @@
 package com.cc.pic.api.base.controller.base;
 
+import com.cc.pic.api.base.service.ISysLogService;
 import com.cc.pic.api.pojo.sys.User;
-import com.cc.pic.api.base.service.ISystemLogService;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Resource;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 @Slf4j
 public class BaseController {
     @Resource
-    protected ISystemLogService systemLogService;
+    protected ISysLogService sysLogService;
 
 
     /**

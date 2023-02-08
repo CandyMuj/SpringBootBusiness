@@ -4,13 +4,13 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.cc.pic.api.pojo.sys.Result;
-import com.cc.pic.api.config.CacheKey;
 import com.cc.pic.api.base.enumc.LogType;
 import com.cc.pic.api.base.enumc.SmsEnum;
 import com.cc.pic.api.base.pojo.restpo.OperatorInfo;
-import com.cc.pic.api.base.service.ISystemLogService;
+import com.cc.pic.api.base.service.ISysLogService;
 import com.cc.pic.api.base.service.IThirdService;
+import com.cc.pic.api.config.CacheKey;
+import com.cc.pic.api.pojo.sys.Result;
 import com.cc.pic.api.utils.VerifyCodeUtils;
 import com.cc.pic.api.utils.sys.YmlConfig;
 import com.cc.pic.api.utils.sys.bean.RedisUtil;
@@ -37,7 +37,7 @@ import java.nio.charset.Charset;
 @Service
 public class ThirdServiceImpl implements IThirdService {
     @Resource
-    private ISystemLogService systemLogService;
+    private ISysLogService sysLogService;
     @Resource
     private RedisUtil redisUtil;
 
@@ -70,12 +70,12 @@ public class ThirdServiceImpl implements IThirdService {
             }
 
             // 添加系统日志
-            systemLogService.add(LogType.IFACEO, "[成功]获取运营商信息", url, phone);
+            sysLogService.add(LogType.IFACEO, "[成功]获取运营商信息", url, phone);
             return operatorInfo;
         } catch (Exception e) {
             log.error("获取运营商信息异常", e);
             // 添加系统日志
-            systemLogService.add(LogType.IFACEO, "[异常]获取运营商信息".concat(e.getClass().getName()).concat(e.getMessage()), url, phone);
+            sysLogService.add(LogType.IFACEO, "[异常]获取运营商信息".concat(e.getClass().getName()).concat(e.getMessage()), url, phone);
             return null;
         }
     }
@@ -99,7 +99,7 @@ public class ThirdServiceImpl implements IThirdService {
 
             // 新增日志
             if (request != null) {
-                systemLogService.ins(LogType.IFACES, "发送短信验证码",
+                sysLogService.ins(LogType.IFACES, "发送短信验证码",
                         request,
                         Result.OK("验证码为:".concat(code))
                 );

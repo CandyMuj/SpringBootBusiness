@@ -1,10 +1,10 @@
 package com.cc.pic.api.base.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cc.pic.api.pojo.sys.Result;
 import com.cc.pic.api.base.enumc.LogType;
-import com.cc.pic.api.base.pojo.SystemLog;
-import com.cc.pic.api.base.pojo.vo.SystemLogVo;
+import com.cc.pic.api.base.pojo.SysLog;
+import com.cc.pic.api.base.pojo.vo.SysLogVo;
+import com.cc.pic.api.pojo.sys.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * @Date 2020/09/30 14:58
  * @Version 1.0
  */
-public interface ISystemLogService extends IService<SystemLog> {
+public interface ISysLogService extends IService<SysLog> {
 
     /**
      * 添加日志
@@ -62,5 +62,5 @@ public interface ISystemLogService extends IService<SystemLog> {
 
     void add(LogType logType, String describe, HttpServletRequest request);
 
-    Result<List<SystemLogVo>> list(SystemLogVo systemLogVo);
+    Result<List<SysLogVo>> list(SysLogVo sysLogVo);
 }
