@@ -1,5 +1,7 @@
 package com.cc.pic.api.base.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysLog extends Model<SysLog> {
+    @TableId(type = IdType.ASSIGN_UUID)
+    @ApiModelProperty("日志Id")
+    private String id;
     @ApiModelProperty("描述")
     private String describe;
     @ApiModelProperty("接口地址")
