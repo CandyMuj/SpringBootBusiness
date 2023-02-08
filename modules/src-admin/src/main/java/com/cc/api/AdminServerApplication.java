@@ -3,6 +3,7 @@ package com.cc.api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -15,6 +16,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 @EnableTransactionManagement
 //@ComponentScan(basePackages = {"com.cc.api"})
+@Import(cn.hutool.extra.spring.SpringUtil.class)
 public class AdminServerApplication {
 
     public static void main(String[] args) {
