@@ -57,7 +57,7 @@ public class WebSysTaskJobController extends BaseController {
         }
 
         SysTaskJob taskJob = new SysTaskJob();
-        taskJob.setJobId(jobId);
+        taskJob.setId(jobId);
         taskJob.setBeanName(beanName);
         taskJob.setMethodName(methodName);
         taskJob.setMethodParams(methodParams);
