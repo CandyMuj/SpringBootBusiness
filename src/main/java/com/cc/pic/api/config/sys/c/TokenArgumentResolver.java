@@ -60,20 +60,20 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
         // 如果是接口鉴权，那么直接返回空，后方就不做解析，否则会报错，因为token是auth的并不是token的
         if (AuthUtil.realAuthSplit(authorization)) {
-            log.warn("This token is Auth {}", SecurityConstants.AUTH_SPLIT);
+            log.debug("This token is Auth {}", SecurityConstants.AUTH_SPLIT);
             return null;
         }
 
 
         String token = AuthUtil.getToken(authorization);
         if (StrUtil.isBlank(token)) {
-            log.warn("resolveArgument error token is empty");
+            log.debug("resolveArgument error token is empty");
             return null;
         }
 
         User user = jwtTokenFactory.validateToken(token);
         if (user == null || user.getUserId() <= 0) {
-            log.error("resolveArgument error token is not exist");
+            log.debug("resolveArgument error token is not exist");
             throw new AuthException("validation failed");
         }
 
