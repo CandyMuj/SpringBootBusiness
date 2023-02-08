@@ -2,6 +2,7 @@ package com.cc.api.intercept.interceptor;
 
 import cn.hutool.core.util.StrUtil;
 import com.cc.api.annotations.Ann;
+import com.cc.api.config.SpringActive;
 import com.cc.api.config.StatusCode;
 import com.cc.api.exception.AuthException;
 import com.cc.api.pojo.sys.User;
@@ -170,8 +171,9 @@ public class AuthInterceptor implements HandlerInterceptor {
      * 验证是否在排除列表，若是直接鉴权成功
      */
     private boolean exclude(String uri) {
-        Boolean res = INTERFACE_EXCLUDE_RES.get(uri);
+        if (SpringActive.isDev()) return true;
 
+        Boolean res = INTERFACE_EXCLUDE_RES.get(uri);
         if (res == null) {
             res = false;
 
