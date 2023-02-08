@@ -33,10 +33,20 @@ public class TestController {
         return "Hello World！";
     }
 
-    @Ann
     @ApiOperation("测试专用接口1")
     @RequestMapping("/test1")
     public Result<?> test1(
+            @ApiParam(required = true, value = "参数1") @RequestParam(defaultValue = "默认值") String par1,
+            @ApiParam(required = false, value = "参数2") String par2,
+            @ApiIgnore User user
+    ) {
+        return Result.OK();
+    }
+
+    @Ann
+    @ApiOperation("测试专用接口2")
+    @RequestMapping("/test2")
+    public Result<?> test2(
             @ApiParam(required = true, value = "参数1") @RequestParam(defaultValue = "默认值") String par1,
             @ApiParam(required = false, value = "参数2") String par2,
             @ApiIgnore User user
