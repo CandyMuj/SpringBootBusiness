@@ -1,13 +1,12 @@
 package com.cc.pic.api.intercept.aop;
 
+import com.cc.pic.api.utils.sys.HttpContextUtil;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,11 +28,8 @@ public class AutoPageAop {
      */
     @Before("execution(com.github.pagehelper.Page com.cc.pic.api..mapper.*Mapper.*(..))")
     public void beforeMethod(JoinPoint point) {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (attributes == null) {
-            return;
-        }
-        HttpServletRequest request = attributes.getRequest();
+        HttpServletRequest request = HttpContextUtil.getHttpServletRequest();
+        if (request == null) return;
         // 页码
         String pageNum = request.getParameter("pageNum");
         // 每页显示条数

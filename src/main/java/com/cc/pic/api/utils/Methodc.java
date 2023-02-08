@@ -2,11 +2,11 @@ package com.cc.pic.api.utils;
 
 import cn.hutool.core.util.StrUtil;
 import com.cc.pic.api.config.Configc;
+import com.cc.pic.api.utils.sys.HttpContextUtil;
 import com.cc.pic.api.utils.sys.YmlConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -62,8 +62,6 @@ public class Methodc {
 
     /**
      * 根据请求获取请求头信息
-     *
-     * @param s
      */
     public static String getReqHeader(String s) {
         try {
@@ -72,18 +70,18 @@ public class Methodc {
                 return null;
             }
 
-            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            if (attributes == null) {
-                log.error("attributes为空");
+            HttpServletRequest request = HttpContextUtil.getHttpServletRequest();
+            if (request == null) {
+                log.error("request为空");
                 return null;
             }
 
-//            Enumeration<String> s = attributes.getRequest().getHeaderNames();
-//            while (s.hasMoreElements()) {
-//                log.info("header --- > {}", s.nextElement());
+//            Enumeration<String> enumeration = request.getHeaderNames();
+//            while (enumeration.hasMoreElements()) {
+//                log.debug("header --- > {}", enumeration.nextElement());
 //            }
 
-            return attributes.getRequest().getHeader(s);
+            return request.getHeader(s);
         } catch (Exception e) {
             log.error("解析请求头出现异常", e);
             return null;
