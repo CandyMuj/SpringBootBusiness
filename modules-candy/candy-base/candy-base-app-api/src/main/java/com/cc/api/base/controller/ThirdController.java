@@ -1,6 +1,7 @@
 package com.cc.api.base.controller;
 
 import com.cc.api.annotations.ApiVersion;
+import com.cc.api.base.controller.base.BaseController;
 import com.cc.api.base.enumc.LogType;
 import com.cc.api.base.enumc.SmsEnum;
 import com.cc.api.base.service.IThirdService;
@@ -31,7 +32,7 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("/third")
 @ApiVersion(ApiGroup.APP)
 @Api(tags = "第三方服务")
-public class ThirdController {
+public class ThirdController extends BaseController {
     @Resource
     private IThirdService thirdService;
 
@@ -64,7 +65,9 @@ public class ThirdController {
             return Result.Error("不受支持的验证码类型");
         }
 
-        return thirdService.check(request, smsEnum, phone, smsCode);
+        Result<?> result = thirdService.check(request, smsEnum, phone, smsCode);
+        sysLogService.ins(LogType.IFACES, "短信-校验验证码", request, result);
+        return result;
     }
 
     @ApiOperation("生成图形验证码")

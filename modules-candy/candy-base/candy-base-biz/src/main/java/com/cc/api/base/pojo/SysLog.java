@@ -17,7 +17,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SystemLog extends Model<SystemLog> {
+public class SysLog extends Model<SysLog> {
     @ApiModelProperty("描述")
     private String describe;
     @ApiModelProperty("接口地址")

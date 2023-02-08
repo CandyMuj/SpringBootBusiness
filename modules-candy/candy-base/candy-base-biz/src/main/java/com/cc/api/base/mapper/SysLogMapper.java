@@ -1,8 +1,8 @@
 package com.cc.api.base.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cc.api.base.pojo.SystemLog;
-import com.cc.api.base.pojo.vo.SystemLogVo;
+import com.cc.api.base.pojo.SysLog;
+import com.cc.api.base.pojo.vo.SysLogVo;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Mapper
 @Component
-public interface SystemLogMapper extends BaseMapper<SystemLog> {
+public interface SysLogMapper extends BaseMapper<SysLog> {
 
-    Page<SystemLogVo> logList(SystemLogVo systemLogVo);
+    Page<SysLogVo> logList(SysLogVo sysLogVo);
 }

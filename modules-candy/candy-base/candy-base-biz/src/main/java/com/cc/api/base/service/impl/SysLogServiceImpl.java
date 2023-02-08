@@ -5,10 +5,10 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.api.base.enumc.LogType;
-import com.cc.api.base.mapper.SystemLogMapper;
-import com.cc.api.base.pojo.SystemLog;
-import com.cc.api.base.pojo.vo.SystemLogVo;
-import com.cc.api.base.service.ISystemLogService;
+import com.cc.api.base.mapper.SysLogMapper;
+import com.cc.api.base.pojo.SysLog;
+import com.cc.api.base.pojo.vo.SysLogVo;
+import com.cc.api.base.service.ISysLogService;
 import com.cc.api.pojo.sys.Result;
 import com.cc.api.utils.DB;
 import com.cc.api.utils.IpUtil;
@@ -30,7 +30,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class SystemLogServiceImpl extends ServiceImpl<SystemLogMapper, SystemLog> implements ISystemLogService {
+public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> implements ISysLogService {
 
 
     /**
@@ -46,18 +46,18 @@ public class SystemLogServiceImpl extends ServiceImpl<SystemLogMapper, SystemLog
     @Override
     public void ins(LogType logType, Long userAccountId, String describe, String restUrl, String restParam, HttpServletRequest request, String oldParam, Result<?> result) {
         int length = 1000;
-        SystemLog systemLog = new SystemLog();
-        systemLog.setLogType(logType.getType());
-        systemLog.setUserAccountId(userAccountId);
-        systemLog.setDescribe(describe);
-        systemLog.setOldParam((StrUtil.isNotBlank(oldParam) && oldParam.length() > length) ? oldParam.substring(0, length - 1) : oldParam);
-        systemLog.setAddTime(new Date());
+        SysLog sysLog = new SysLog();
+        sysLog.setLogType(logType.getType());
+        sysLog.setUserAccountId(userAccountId);
+        sysLog.setDescribe(describe);
+        sysLog.setOldParam((StrUtil.isNotBlank(oldParam) && oldParam.length() > length) ? oldParam.substring(0, length - 1) : oldParam);
+        sysLog.setAddTime(new Date());
 
         if (request == null) {
-            systemLog.setRestUrl(restUrl);
+            sysLog.setRestUrl(restUrl);
         } else {
-            systemLog.setIp(IpUtil.getRealIP(request));
-            systemLog.setRestUrl(request.getRequestURI());
+            sysLog.setIp(IpUtil.getRealIP(request));
+            sysLog.setRestUrl(request.getRequestURI());
             Map<String, String[]> params = request.getParameterMap();
             if (params != null) {
                 params = new HashMap<>(params);
@@ -84,7 +84,7 @@ public class SystemLogServiceImpl extends ServiceImpl<SystemLogMapper, SystemLog
 
         if (StrUtil.isNotBlank(restParam)) {
             restParam = restParam.length() > length ? restParam.substring(0, length - 1) : restParam;
-            systemLog.setRestParam(restParam);
+            sysLog.setRestParam(restParam);
         }
 
         if (result != null) {
@@ -95,10 +95,10 @@ public class SystemLogServiceImpl extends ServiceImpl<SystemLogMapper, SystemLog
             result1.pageSize = result.pageSize;
             result1.errCode = result.errCode;
             result1.msg = result.msg;
-            systemLog.setResult(JSONObject.toJSONString(result1));
+            sysLog.setResult(JSONObject.toJSONString(result1));
         }
 
-        if (!systemLog.insert()) {
+        if (!sysLog.insert()) {
             log.error("添加日志失败");
         }
     }
@@ -184,8 +184,8 @@ public class SystemLogServiceImpl extends ServiceImpl<SystemLogMapper, SystemLog
      * 系统日志查询
      */
     @Override
-    public Result<List<SystemLogVo>> list(SystemLogVo systemLogVo) {
-        return DB.getPageRes(baseMapper.logList(systemLogVo));
+    public Result<List<SysLogVo>> list(SysLogVo sysLogVo) {
+        return DB.getPageRes(baseMapper.logList(sysLogVo));
     }
 
 }
