@@ -1,9 +1,9 @@
 package com.cc.api.utils.sys;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import sun.misc.BASE64Encoder;
 
 import java.nio.charset.StandardCharsets;
 
@@ -44,7 +44,7 @@ public class AuthUtil {
     private static String generateAuth() {
         try {
             byte[] b = (INTERFACE_AUTH_USERNAME + ":" + INTERFACE_AUTH_PASSWORD).getBytes(StandardCharsets.UTF_8);
-            return new BASE64Encoder().encode(b);
+            return Base64.encode(b);
         } catch (Exception e) {
             log.error("AuthUtil Exception...", e);
         }
