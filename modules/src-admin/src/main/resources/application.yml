@@ -72,7 +72,7 @@ mybatis-plus:
       # 全局逻辑删除的实体字段名(配置后可以忽略设置TableLogic注解)
       logic-delete-field: deleted
       # 逻辑已删除值(默认为 1)
-      logic-delete-value: 1
+      logic-delete-value: UNIX_TIMESTAMP()
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 0
   configuration:
