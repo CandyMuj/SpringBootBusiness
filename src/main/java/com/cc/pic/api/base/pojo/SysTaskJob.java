@@ -24,6 +24,8 @@ public class SysTaskJob extends Model<SysTaskJob> {
     @TableId
     @ApiModelProperty("任务ID")
     private Integer id;
+    @ApiModelProperty("删除标识 0未删除 1已删除")
+    private Long deleted;
     @ApiModelProperty("创建时间")
     private Date createTime;
     @ApiModelProperty("状态（1正常 0暂停）")
