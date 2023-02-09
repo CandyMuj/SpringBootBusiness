@@ -30,12 +30,6 @@ spring:
         min-idle: 5
         # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1
-    lettuce:
-      pool:
-        max-active: 10
-        max-idle: 8
-        min-idle: 5
-        max-wait: -1
 
   datasource:
     hikari:
