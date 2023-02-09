@@ -15,7 +15,7 @@ public enum SysConfigType {
     private final Integer code;
     private final Class clazz;
 
-    SysConfigType(Integer code, Class clazz) {
+    <T> SysConfigType(Integer code, Class<T> clazz) {
         this.code = code;
         this.clazz = clazz;
     }
@@ -24,7 +24,7 @@ public enum SysConfigType {
         return code;
     }
 
-    public Class getClazz() {
+    public <T> Class<T> getClazz() {
         return clazz;
     }
 

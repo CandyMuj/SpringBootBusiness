@@ -18,6 +18,8 @@ public interface ISysConfigService extends IService<SysConfig> {
 
     <T> T getConfig(String configKey);
 
+    <T> T getConfig(SysConfigKey configKey);
+
     boolean updByKey(String configKey, String configValue);
 
     boolean updByKey(SysConfigKey configKey, String configValue);
