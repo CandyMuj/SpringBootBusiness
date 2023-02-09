@@ -1,6 +1,7 @@
 package com.cc.api.base.controller.web;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.lang.Assert;
+import com.cc.api.annotations.Ann;
 import com.cc.api.annotations.ApiVersion;
 import com.cc.api.base.pojo.SysConfig;
 import com.cc.api.base.service.ISysConfigService;
@@ -8,12 +9,17 @@ import com.cc.api.enumc.ApiGroup;
 import com.cc.api.pojo.sys.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @Description 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！
@@ -26,31 +32,44 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/admin/sys/config")
 @ApiVersion(g = ApiGroup.G.ADMIN, v = ApiGroup.V.V1)
-@Api(tags = "系统配置参数")
+@Api(tags = "系统配置")
 public class WebSysConfigController {
     @Resource
     private ISysConfigService sysConfigService;
 
 
-    @ApiOperation("根据id获取")
-    @GetMapping("/get")
+    @ApiOperation("获取系统配置")
+    @GetMapping("/one")
     public Result<SysConfig> getConfig(
             @RequestParam @NotBlank(message = "参数不可为空") String configKey
     ) {
         return Result.OK(sysConfigService.getById(configKey));
     }
 
-    @ApiOperation("更新")
+    @ApiOperation("获取系统配置-批量")
+    @PostMapping("/bat")
+    public Result<List<SysConfig>> getConfigs(
+            @ApiParam(required = true, value = "配置key串") @RequestBody
+            @NotNull(message = "参数为空") @Size(min = 1, message = "参数为空") Set<String> configKeys
+    ) {
+        return Result.OK(sysConfigService.listByIds(configKeys));
+    }
+
+    @Ann
+    @ApiOperation("更新系统配置")
     @PostMapping("/upd")
     public Result<?> upd(@RequestBody SysConfig sysConfig) {
-        if (sysConfig.getConfigKey() == null) {
-            return Result.Error("key不可为空");
-        }
-        if (StrUtil.isBlank(sysConfig.getConfigVal())) {
-            return Result.Error("val不可为空");
-        }
+        sysConfigService.updByKey(sysConfig.getConfigKey(), sysConfig.getConfigVal());
+        return Result.OK();
+    }
 
-        sysConfig.updateById();
+    @Ann
+    @ApiOperation("更新系统配置-批量")
+    @PostMapping("/upd/bat")
+    public Result<?> updBat(@RequestBody List<SysConfig> sysConfigs) {
+        Assert.notEmpty(sysConfigs, "配置不可为空");
+
+        sysConfigs.forEach(o -> sysConfigService.updByKey(o.getConfigKey(), o.getConfigVal()));
         return Result.OK();
     }
 

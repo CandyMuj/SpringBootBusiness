@@ -1,6 +1,5 @@
 package com.cc.api.base.service;
 
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cc.api.base.enumc.SysConfigKey;
 import com.cc.api.base.pojo.SysConfig;
@@ -18,6 +17,8 @@ public interface ISysConfigService extends IService<SysConfig> {
     <T> T getConfig(SysConfigKey configKey, Class<T> clazz);
 
     <T> T getConfig(String configKey);
+
+    <T> T getConfig(SysConfigKey configKey);
 
     boolean updByKey(String configKey, String configValue);
 

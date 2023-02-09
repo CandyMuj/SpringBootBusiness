@@ -1,10 +1,9 @@
 package com.cc.api.base.service.impl;
 
-
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.api.base.enumc.SysConfigKey;
 import com.cc.api.base.enumc.SysConfigType;
@@ -25,7 +24,7 @@ import javax.annotation.Resource;
  * @Version 1.0
  */
 @Slf4j
-@Service
+@Service("sysConfigService")
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements ISysConfigService {
     @Resource
     private RedisUtil redisUtil;
@@ -35,8 +34,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
     public <T> T getConfig(String configKey, Class<T> clazz) {
         if (StrUtil.isBlank(configKey)) return null;
 
-        Object cache = redisUtil.hget(CacheKey.SYS_CONFIG, configKey);
-        String sysConfigStr = (cache != null ? cache.toString() : null);
+        String sysConfigStr = StrUtil.toStringOrNull(redisUtil.hget(CacheKey.SYS_CONFIG, configKey));
         if (StrUtil.isBlank(sysConfigStr)) {
             SysConfig sysConfig = super.getById(configKey);
             if (sysConfig == null) {
@@ -45,10 +43,10 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
             if (StrUtil.isBlank(sysConfig.getConfigVal())) {
                 return null;
             }
-            redisUtil.hset(CacheKey.SYS_CONFIG, configKey, sysConfigStr = JSONObject.toJSONString(sysConfig));
+            redisUtil.hset(CacheKey.SYS_CONFIG, configKey, sysConfigStr = JSONUtil.toJsonStr(sysConfig));
         }
 
-        SysConfig sysConfig = JSONObject.parseObject(sysConfigStr, SysConfig.class);
+        SysConfig sysConfig = JSONUtil.toBean(sysConfigStr, SysConfig.class);
         if (clazz == null) {
             SysConfigType configType = SysConfigType.val(sysConfig.getConfigType());
             if (configType == null) {
@@ -60,7 +58,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
             return null;
         }
         if (SysConfigType.JSON.getCode().equals(sysConfig.getConfigType())) {
-            return JSONObject.parseObject(sysConfig.getConfigVal(), clazz);
+            return JSONUtil.toBean(sysConfig.getConfigVal(), clazz);
         } else {
             return ReflectUtil.newInstance(clazz, sysConfig.getConfigVal());
         }
@@ -79,14 +77,29 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
     }
 
     @Override
+    public <T> T getConfig(SysConfigKey configKey) {
+        return this.getConfig(configKey, configKey.getClazz());
+    }
+
+
+    @Override
     public boolean updByKey(String configKey, String configValue) {
         Assert.notBlank(configKey, "key为空或不存在");
         Assert.notBlank(configValue, "val不可为空");
 
-        super.lambdaUpdate()
-                .eq(SysConfig::getConfigKey, configKey)
-                .set(SysConfig::getConfigVal, configValue)
-                .update();
+        // 如果能获取枚举，就调用一下参数校验方法
+        SysConfigKey keyEnum = SysConfigKey.val(configKey);
+        if (keyEnum != null) {
+            String val = keyEnum.verify(configValue);
+            if (val != null) configValue = val;
+        }
+
+        Assert.isTrue(super.lambdaUpdate()
+                        .eq(SysConfig::getConfigKey, configKey)
+                        .set(SysConfig::getConfigVal, configValue)
+                        .update(),
+                "配置不存在"
+        );
 
         redisUtil.hdel(CacheKey.SYS_CONFIG, configKey);
         return true;

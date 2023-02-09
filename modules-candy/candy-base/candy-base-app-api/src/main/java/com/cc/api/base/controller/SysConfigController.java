@@ -6,15 +6,18 @@ import com.cc.api.enumc.ApiGroup;
 import com.cc.api.pojo.sys.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @Description 由 https://github.com/CandyMuj/MyBatisPlusGenerator 自动生成！
@@ -27,18 +30,35 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/sys/config")
 @ApiVersion(g = ApiGroup.G.APP, v = ApiGroup.V.V1)
-@Api(tags = "系统配置参数")
+@Api(tags = "系统配置")
 public class SysConfigController {
     @Resource
     private ISysConfigService sysConfigService;
 
 
-    @ApiOperation("获取系统参数")
-    @GetMapping("/get")
+    @ApiOperation("获取系统配置")
+    @GetMapping("/one")
     public Result<Object> getConfig(
             @RequestParam @NotBlank(message = "参数不可为空") String configKey
     ) {
         return Result.OK(sysConfigService.getConfig(configKey));
+    }
+
+    @ApiOperation("获取系统配置-批量")
+    @PostMapping("/bat")
+    public Result<Map<String, Object>> getConfigs(
+            @ApiParam(required = true, value = "配置key串") @RequestBody
+            @NotNull(message = "参数为空") @Size(min = 1, message = "参数为空") Set<String> configKeys
+    ) {
+        // 由于内部使用的是redis，因此直接用循环获取的方式；因为如果改内部为批量，反而麻烦许多，没必要的
+        Map<String, Object> map = new HashMap<>();
+        for (String configKey : configKeys) {
+            Object o = sysConfigService.getConfig(configKey);
+            if (o == null) continue;
+            map.put(configKey, o);
+        }
+
+        return Result.OK(map);
     }
 
 }
