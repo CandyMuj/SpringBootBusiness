@@ -25,7 +25,7 @@ import javax.validation.constraints.NotBlank;
 @Validated
 @RestController
 @RequestMapping("/admin/sys/config")
-@ApiVersion(ApiGroup.ADMIN)
+@ApiVersion(g = ApiGroup.G.ADMIN, v = ApiGroup.V.V1)
 @Api(tags = "系统配置参数")
 public class WebSysConfigController {
     @Resource
