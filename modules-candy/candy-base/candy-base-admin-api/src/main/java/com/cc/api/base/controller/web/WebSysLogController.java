@@ -40,14 +40,10 @@ public class WebSysLogController extends BaseController {
     @ApiOperation("管理端-系统日志查询")
     @PostMapping("/list")
     public Result<List<SysLogVo>> list(
-            @ApiIgnore HttpServletRequest request,
             @ApiParam(required = true, value = "筛选条件") @RequestBody SysLogVo sysLogVo,
             @ApiIgnore User user
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
+        super.validateAdmin(user);
 
         return sysLogService.list(sysLogVo);
     }

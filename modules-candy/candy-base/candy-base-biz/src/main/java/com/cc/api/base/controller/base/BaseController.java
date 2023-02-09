@@ -1,5 +1,6 @@
 package com.cc.api.base.controller.base;
 
+import cn.hutool.core.lang.Assert;
 import com.cc.api.base.service.ISysLogService;
 import com.cc.api.pojo.sys.User;
 import lombok.extern.slf4j.Slf4j;
@@ -21,18 +22,10 @@ public class BaseController {
     /**
      * 验证当前账号是否具有管理员操作权限
      */
-    protected String validateAdmin(User user) {
-        if (user == null) {
-            return "账号不存在";
-        }
-        if (!this.isAdmin(user)) {
-            return "无权操作";
-        }
-//        if (!Enable.DISENABLE.getCode().equals(user.getFrozen())) {
-//            return "此账号被冻结";
-//        }
-
-        return null;
+    protected void validateAdmin(User user) {
+        Assert.notNull(user, "账号不存在");
+        Assert.isTrue(this.isAdmin(user), "无权操作");
+        //Assert.isTrue(Enable.DISENABLE.getCode().equals(user.getFrozen()), "此账号被冻结");
     }
 
 
