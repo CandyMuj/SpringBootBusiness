@@ -17,7 +17,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ApiVersion {
 
-    // 必填值：swagger文档分组注解
-    ApiGroup[] value();
+    // 必填值：swagger文档分组注解-所属端
+    ApiGroup.G[] g();
+
+    // 必填值：swagger文档分组注解-版本号
+    ApiGroup.V[] v();
 
 }

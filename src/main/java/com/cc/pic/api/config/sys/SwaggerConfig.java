@@ -1,5 +1,9 @@
 package com.cc.pic.api.config.sys;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import com.cc.pic.api.annotations.ApiVersion;
 import com.cc.pic.api.config.Configc;
 import com.cc.pic.api.config.SecurityConstants;
@@ -7,6 +11,7 @@ import com.cc.pic.api.enumc.ApiGroup;
 import com.cc.pic.api.utils.sys.YmlConfig;
 import com.google.common.base.Optional;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -39,25 +44,31 @@ public class SwaggerConfig {
      * 将所有的接口都加入到默认分组中
      */
     @Bean
-    public Docket createRestApi() {
+    public Docket createRestApi(DefaultListableBeanFactory beanFactory) {
+        // 循环动态创建docket
+        Arrays.stream(ApiGroup.G.values()).forEach(group -> {
+            if (!group.isShow()) return;
+            // 手动将配置类注入到spring bean容器中
+            beanFactory.registerSingleton(StrUtil.format("swaggerDocket{}", RandomUtil.randomString(5)), this.buildWithGroup(group));
+
+            Arrays.stream(ApiGroup.V.values()).forEach(version -> {
+                if (!version.isShow()) return;
+                beanFactory.registerSingleton(StrUtil.format("swaggerDocket{}", RandomUtil.randomString(5)), this.buildWithGroup(group, version));
+            });
+        });
+
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(this.apiInfo())
                 .select()
+                // 加了ApiOperation注解的类，才生成接口文档
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                // 包下的类，才生成接口文档
+                //.apis(RequestHandlerSelectors.basePackage("com.cc.pic.api"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(this.globalParameters())
                 .enable(Configc.GLOBAL_SWAGGER_OPEN);
-    }
-
-    @Bean
-    public Docket app() {
-        return this.buildWithGroup(ApiGroup.APP);
-    }
-
-    @Bean
-    public Docket admin() {
-        return this.buildWithGroup(ApiGroup.ADMIN);
     }
 
 
@@ -68,24 +79,28 @@ public class SwaggerConfig {
      * 缺点：需要在每个类上都加注解
      * 总结：每次编写需要加注解，但是可以保证在修改包路径后不影响生成
      */
-    private Docket buildWithGroup(ApiGroup apiGroup) {
+    private Docket buildWithGroup(ApiGroup.G group, ApiGroup.V version) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(this.apiInfo())
-                .groupName(apiGroup.getName())
+                .groupName(CollUtil.join(
+                        new ArrayList<String>() {{
+                            add(group.getName());
+                            if (version != null) add(version.getName());
+                        }},
+                        "-"
+                ))
                 .select()
                 .apis(input -> {
                     if (input != null && input.isAnnotatedWith(ApiOperation.class)) {
                         // 如果方法和类上同时存在注解，即以方法上的注解为准
                         // 先获取方法上的分组信息
                         Optional<ApiVersion> optional = input.findAnnotation(ApiVersion.class);
-                        if (optional.isPresent()) {
-                            return Arrays.asList(optional.get().value()).contains(apiGroup);
+                        if (!optional.isPresent()) {
+                            // 然后获取Controller类上的分组信息
+                            optional = input.findControllerAnnotation(ApiVersion.class);
                         }
 
-                        // 然后获取Controller类上的分组信息
-                        optional = input.findControllerAnnotation(ApiVersion.class);
-
-                        return optional.isPresent() && Arrays.asList(optional.get().value()).contains(apiGroup);
+                        return optional.isPresent() && ArrayUtil.contains(optional.get().g(), group) && (version == null || ArrayUtil.contains(optional.get().v(), version));
                     }
 
                     return false;
@@ -95,6 +110,11 @@ public class SwaggerConfig {
                 .globalOperationParameters(this.globalParameters())
                 .enable(Configc.GLOBAL_SWAGGER_OPEN);
     }
+
+    private Docket buildWithGroup(ApiGroup.G group) {
+        return this.buildWithGroup(group, null);
+    }
+
 
     /**
      * 根据自定义分组名和包路径生成docket

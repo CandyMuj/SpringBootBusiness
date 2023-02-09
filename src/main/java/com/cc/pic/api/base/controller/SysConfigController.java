@@ -27,7 +27,7 @@ import javax.validation.constraints.NotBlank;
 @Validated
 @RestController
 @RequestMapping("/sys/config")
-@ApiVersion(ApiGroup.APP)
+@ApiVersion(g = ApiGroup.G.APP, v = ApiGroup.V.V1)
 @Api(tags = "系统配置参数")
 public class SysConfigController extends BaseController {
     @Resource

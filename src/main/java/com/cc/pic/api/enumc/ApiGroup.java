@@ -6,19 +6,58 @@ package com.cc.pic.api.enumc;
  * @Date 2020/7/17 16:47
  * @Version 1.0
  */
-public enum ApiGroup {
-    APP("应用端 1.0"),
-    ADMIN("管理员端 1.0"),
-    ;
+public class ApiGroup {
+
+    /**
+     * 版本号
+     */
+    public enum V {
+        V1("1.0.0", true),
+        ;
 
 
-    private String name;
+        private final String name;
+        private final boolean show;
 
-    ApiGroup(String name) {
-        this.name = name;
+        V(String name, boolean show) {
+            this.name = name;
+            this.show = show;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public boolean isShow() {
+            return show;
+        }
     }
 
-    public String getName() {
-        return name;
+    /**
+     * 客户端
+     */
+    public enum G {
+        COMMON("通用", true),
+        APP("应用端", true),
+        ADMIN("管理员端", true),
+        ;
+
+
+        private final String name;
+        private final boolean show;
+
+        G(String name, boolean show) {
+            this.name = name;
+            this.show = show;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public boolean isShow() {
+            return show;
+        }
     }
+
 }
