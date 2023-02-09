@@ -27,24 +27,23 @@ public class LogFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        log.info("============================================================================================");
+        log.debug("============================================================================================");
         if (servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse) {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-            log.info("IP : {}-{}", request.getRemoteAddr(), IpUtil.getRealIP(request));
-            log.info("URL : {}", request.getRequestURL().toString());
-            log.info("HTTP_METHOD : {}", request.getMethod());
-            log.info("PARAMS : {}", JSONObject.toJSONString(request.getParameterMap()));
+            log.debug("URL : {}", request.getRequestURL().toString());
+            log.debug("IP : {}-{}", request.getRemoteAddr(), IpUtil.getRealIP(request));
+            log.debug("HTTP_METHOD : {}", request.getMethod());
+            log.debug("PARAMS : {}", JSONObject.toJSONString(request.getParameterMap()));
             Enumeration<String> enumeration = request.getHeaderNames();
             while (enumeration.hasMoreElements()) {
                 String headerName = enumeration.nextElement();
                 log.debug("HEADER : {}   \t{}", headerName, request.getHeader(headerName));
             }
-            log.info("============================================================================================");
         }
 
         filterChain.doFilter(servletRequest, servletResponse);
-        log.info("============================================================================================");
+        log.debug("============================================================================================");
     }
 
 }
