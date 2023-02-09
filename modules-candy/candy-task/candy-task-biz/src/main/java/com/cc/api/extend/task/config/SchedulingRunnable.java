@@ -3,7 +3,7 @@ package com.cc.api.extend.task.config;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.util.StrUtil;
-import com.cc.api.utils.sys.bean.SpringContextUtils;
+import cn.hutool.extra.spring.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ReflectionUtils;
@@ -39,7 +39,7 @@ public class SchedulingRunnable implements Runnable {
         log.info("定时任务开始执行 - bean：{} 方法：{} 参数：{}", beanName, methodName, params);
         TimeInterval timer = DateUtil.timer();
         try {
-            Object target = SpringContextUtils.getBean(beanName);
+            Object target = SpringUtil.getBean(beanName);
 
             Method method;
             if (StringUtils.isNotEmpty(params)) {
