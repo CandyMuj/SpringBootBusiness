@@ -2,12 +2,12 @@ package com.cc.pic.api.base.controller.web;
 
 import com.cc.pic.api.annotations.Ann;
 import com.cc.pic.api.annotations.ApiVersion;
-import com.cc.pic.api.enumc.ApiGroup;
-import com.cc.pic.api.pojo.sys.Result;
-import com.cc.pic.api.pojo.sys.User;
 import com.cc.pic.api.base.controller.base.BaseController;
 import com.cc.pic.api.base.pojo.SysTaskJob;
 import com.cc.pic.api.base.service.ISysTaskJobService;
+import com.cc.pic.api.enumc.ApiGroup;
+import com.cc.pic.api.pojo.sys.Result;
+import com.cc.pic.api.pojo.sys.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -51,10 +51,7 @@ public class WebSysTaskJobController extends BaseController {
             @ApiParam(required = true, value = "状态（1正常 0暂停）") @RequestParam Integer jobStatus,
             @ApiIgnore User user
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
+        super.validateAdmin(user);
 
         SysTaskJob taskJob = new SysTaskJob();
         taskJob.setId(jobId);
@@ -76,10 +73,7 @@ public class WebSysTaskJobController extends BaseController {
             @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId,
             @ApiIgnore User user
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
+        super.validateAdmin(user);
 
         return sysTaskJobService.delete(jobId);
     }
@@ -91,10 +85,7 @@ public class WebSysTaskJobController extends BaseController {
             @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId,
             @ApiIgnore User user
     ) {
-        String msg = super.validateAdmin(user);
-        if (msg != null) {
-            return Result.Error(msg);
-        }
+        super.validateAdmin(user);
 
         return sysTaskJobService.switchTask(jobId);
     }
