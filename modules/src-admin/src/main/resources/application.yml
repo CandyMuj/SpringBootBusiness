@@ -14,6 +14,10 @@ spring:
     multipart:
       max-file-size: 1000MB
       max-request-size: 1000MB
+  mvc:
+    # 开启会打印重复的warn日志 默认是false但是不知道哪个地方设置成了true，在这里进行强制设置
+    log-resolved-exception: false
+    throw-exception-if-no-handler-found: true
 
 
   redis:
