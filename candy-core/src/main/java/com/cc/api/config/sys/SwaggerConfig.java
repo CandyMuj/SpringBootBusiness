@@ -64,7 +64,7 @@ public class SwaggerConfig {
                 // 加了ApiOperation注解的类，才生成接口文档
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 // 包下的类，才生成接口文档
-                //.apis(RequestHandlerSelectors.basePackage("com.cc.pic.api"))
+                //.apis(RequestHandlerSelectors.basePackage("com.cc.api"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(this.globalParameters())
