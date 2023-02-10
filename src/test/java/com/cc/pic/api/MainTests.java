@@ -1,4 +1,4 @@
-package com.cc.pic.api;
+package com.cc.api;
 
 import org.junit.jupiter.api.Test;
 
