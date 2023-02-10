@@ -9,10 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cc.api</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>SpringBootBusiness</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>apiserver</name>
+    <name>SpringBootBusiness</name>
+    <description>My love to love!</description>
 
 
     <properties>

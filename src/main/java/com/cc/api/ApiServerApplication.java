@@ -17,10 +17,10 @@ import org.springframework.web.filter.CorsFilter;
 @EnableTransactionManagement
 //@ComponentScan(basePackages = {"com.cc.api"})
 @Import(cn.hutool.extra.spring.SpringUtil.class)
-public class ApiserverApplication {
+public class ApiServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiserverApplication.class, args);
+        SpringApplication.run(ApiServerApplication.class, args);
     }
 
     @Bean
