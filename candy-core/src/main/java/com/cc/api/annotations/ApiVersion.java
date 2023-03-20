@@ -16,11 +16,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ApiVersion {
-
-    // 必填值：swagger文档分组注解-所属端
-    ApiGroup.G[] g();
-
     // 必填值：swagger文档分组注解-版本号
-    ApiGroup.V[] v();
+    ApiGroup.V[] value();
+
+    // 可选值：swagger文档分组注解-所属端（空则取group枚举中配置的默认包限定名进行分组）
+    ApiGroup.G[] g() default {};
 
 }

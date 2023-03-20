@@ -30,7 +30,7 @@ import javax.validation.constraints.NotBlank;
 @Validated
 @RestController
 @RequestMapping("/third")
-@ApiVersion(g = ApiGroup.G.APP, v = ApiGroup.V.V1)
+@ApiVersion(g = ApiGroup.G.APP, value = ApiGroup.V.V1)
 @Api(tags = "第三方服务")
 public class ThirdController extends BaseController {
     @Resource

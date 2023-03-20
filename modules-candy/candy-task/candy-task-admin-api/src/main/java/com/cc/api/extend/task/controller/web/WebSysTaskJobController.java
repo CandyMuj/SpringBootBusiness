@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 @Validated
 @RestController
 @RequestMapping("/admin/sys/task_job")
-@ApiVersion(g = ApiGroup.G.ADMIN, v = ApiGroup.V.V1)
+@ApiVersion(g = ApiGroup.G.ADMIN, value = ApiGroup.V.V1)
 @Api(tags = "动态定时任务配置")
 public class WebSysTaskJobController {
     @Resource

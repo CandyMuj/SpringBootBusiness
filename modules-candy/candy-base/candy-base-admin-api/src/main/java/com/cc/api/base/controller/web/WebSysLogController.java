@@ -31,7 +31,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/admin/sys/log")
-@ApiVersion(g = ApiGroup.G.ADMIN, v = ApiGroup.V.V1)
+@ApiVersion(g = ApiGroup.G.ADMIN, value = ApiGroup.V.V1)
 @Api(tags = "系统日志")
 public class WebSysLogController extends BaseController {
 

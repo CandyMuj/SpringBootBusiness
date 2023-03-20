@@ -29,7 +29,7 @@ import java.util.Set;
 @Validated
 @RestController
 @RequestMapping("/sys/config")
-@ApiVersion(g = ApiGroup.G.APP, v = ApiGroup.V.V1)
+@ApiVersion(g = ApiGroup.G.APP, value = ApiGroup.V.V1)
 @Api(tags = "系统配置")
 public class SysConfigController {
     @Resource

@@ -38,21 +38,31 @@ public class ApiGroup {
      */
     public enum G {
         COMMON("通用", true),
-        APP("应用端", true),
-        ADMIN("管理员端", true),
+        APP("应用端", new String[]{"com.cc.api.base.controller"}, true),
+        ADMIN("管理员端", new String[]{"com.cc.api.base.controller.web"}, true),
         ;
 
 
         private final String name;
+        private final String[] basePackages;
         private final boolean show;
 
-        G(String name, boolean show) {
+        G(String name, String[] basePackages, boolean show) {
             this.name = name;
             this.show = show;
+            this.basePackages = basePackages;
+        }
+
+        G(String name, boolean show) {
+            this(name, new String[]{}, show);
         }
 
         public String getName() {
             return name;
+        }
+
+        public String[] getBasePackages() {
+            return basePackages;
         }
 
         public boolean isShow() {
