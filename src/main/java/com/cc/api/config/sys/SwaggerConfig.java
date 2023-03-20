@@ -91,19 +91,21 @@ public class SwaggerConfig {
                 ))
                 .select()
                 .apis(input -> {
-                    if (input != null && input.isAnnotatedWith(ApiOperation.class)) {
-                        // 如果方法和类上同时存在注解，即以方法上的注解为准
-                        // 先获取方法上的分组信息
-                        Optional<ApiVersion> optional = input.findAnnotation(ApiVersion.class);
-                        if (!optional.isPresent()) {
-                            // 然后获取Controller类上的分组信息
-                            optional = input.findControllerAnnotation(ApiVersion.class);
-                        }
+                    if (input == null || !input.isAnnotatedWith(ApiOperation.class)) return false;
 
-                        return optional.isPresent() && ArrayUtil.contains(optional.get().g(), group) && (version == null || ArrayUtil.contains(optional.get().v(), version));
+                    // 如果方法和类上同时存在注解，即以方法上的注解为准
+                    // 先获取方法上的分组信息
+                    Optional<ApiVersion> optional = input.findAnnotation(ApiVersion.class);
+                    if (!optional.isPresent()) {
+                        // 然后获取Controller类上的分组信息
+                        optional = input.findControllerAnnotation(ApiVersion.class);
                     }
 
-                    return false;
+                    return optional.isPresent()
+                            && (optional.get().g().length == 0
+                            ? Arrays.stream(group.getBasePackages()).anyMatch(s -> input.declaringClass().getName().replace(s, "").split("\\.").length == 2)
+                            : ArrayUtil.contains(optional.get().g(), group))
+                            && (version == null || ArrayUtil.contains(optional.get().value(), version));
                 })
                 .paths(PathSelectors.any())
                 .build()

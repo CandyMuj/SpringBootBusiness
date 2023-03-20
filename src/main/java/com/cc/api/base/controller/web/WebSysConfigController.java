@@ -31,7 +31,7 @@ import java.util.Set;
 @Validated
 @RestController
 @RequestMapping("/admin/sys/config")
-@ApiVersion(g = ApiGroup.G.ADMIN, v = ApiGroup.V.V1)
+@ApiVersion(ApiGroup.V.V1)
 @Api(tags = "系统配置")
 public class WebSysConfigController {
     @Resource

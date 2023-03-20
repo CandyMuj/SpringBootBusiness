@@ -30,7 +30,7 @@ import java.util.Iterator;
 @Slf4j
 @RestController
 @RequestMapping("/fileserver")
-@ApiVersion(g = ApiGroup.G.APP, v = ApiGroup.V.V1)
+@ApiVersion(g = ApiGroup.G.APP, value = ApiGroup.V.V1)
 @Api(tags = "文件服务")
 public class UploadController {
 
