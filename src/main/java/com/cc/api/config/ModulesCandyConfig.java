@@ -1,6 +1,5 @@
 package com.cc.api.config;
 
-import com.cc.api.config.sys.task.JobKey;
 import com.cc.api.utils.sys.YmlConfig;
 
 import java.util.Date;
@@ -26,7 +25,7 @@ public class ModulesCandyConfig {
         public static final long clusterCheckInterval = Optional.ofNullable(YmlConfig.getLong("modules-candy.candy-task.clusterCheckInterval")).orElse(15000L);
 
         // 动态定时任务更新时间
-        public static final Map<JobKey, Date> lastUpd = new HashMap<>();
+        public static final Map<String, Date> lastUpd = new HashMap<>();
     }
 
 }

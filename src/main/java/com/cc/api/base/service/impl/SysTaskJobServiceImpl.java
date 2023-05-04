@@ -1,14 +1,14 @@
 package com.cc.api.base.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cc.api.base.mapper.SysTaskJobMapper;
+import com.cc.api.base.pojo.SysTaskJob;
+import com.cc.api.base.service.ISysTaskJobService;
 import com.cc.api.config.sys.task.CronTaskRegistrar;
 import com.cc.api.config.sys.task.JobKey;
 import com.cc.api.config.sys.task.SchedulingRunnable;
 import com.cc.api.enumc.Enable;
 import com.cc.api.pojo.sys.Result;
-import com.cc.api.base.mapper.SysTaskJobMapper;
-import com.cc.api.base.pojo.SysTaskJob;
-import com.cc.api.base.service.ISysTaskJobService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,13 +52,6 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
             if (oldJob.getJobStatus() == 1) {
                 cronTaskRegistrar.removeCronTask(JobKey.jobKey(oldJob.getId()));
             }
-            if (taskJob.getJobStatus() == 1) {
-                cronTaskRegistrar.addCronTask(
-                        JobKey.jobKey(taskJob.getId()),
-                        new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()),
-                        taskJob.getCronExpression()
-                );
-            }
         }
         // 新增
         else {
@@ -67,15 +60,15 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
             if (!taskJob.insert()) {
                 return Result.Error("新增失败");
             }
+        }
 
-            // 动态调整定时任务
-            if (taskJob.getJobStatus() == 1) {
-                cronTaskRegistrar.addCronTask(
-                        JobKey.jobKey(taskJob.getId()),
-                        new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()),
-                        taskJob.getCronExpression()
-                );
-            }
+        // 动态调整定时任务
+        if (taskJob.getJobStatus() == 1) {
+            cronTaskRegistrar.addCronTask(
+                    JobKey.jobKey(taskJob.getId()),
+                    new SchedulingRunnable(taskJob.getBeanName(), taskJob.getMethodName(), taskJob.getMethodParams()),
+                    taskJob.getCronExpression()
+            );
         }
 
         return Result.OK();
