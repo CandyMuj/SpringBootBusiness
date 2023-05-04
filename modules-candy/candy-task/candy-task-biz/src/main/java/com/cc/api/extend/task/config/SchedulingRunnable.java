@@ -36,7 +36,7 @@ public class SchedulingRunnable implements Runnable {
 
     @Override
     public void run() {
-        log.info("定时任务开始执行 - bean：{} 方法：{} 参数：{}", beanName, methodName, params);
+        log.debug("定时任务开始执行 - bean：{} 方法：{} 参数：{}", beanName, methodName, params);
         TimeInterval timer = DateUtil.timer();
         try {
             Object target = SpringUtil.getBean(beanName);
@@ -57,7 +57,7 @@ public class SchedulingRunnable implements Runnable {
         } catch (Exception ex) {
             log.error(StrUtil.format("定时任务执行异常 - bean：{} 方法：{} 参数：{} msg：{}", beanName, methodName, params, ex.getMessage()), ex);
         } finally {
-            log.info("定时任务执行结束 - bean：{} 方法：{} 参数：{} 耗时：{} 毫秒", beanName, methodName, params, timer.interval());
+            log.debug("定时任务执行结束 - bean：{} 方法：{} 参数：{} 耗时：{} 毫秒", beanName, methodName, params, timer.interval());
         }
     }
 
