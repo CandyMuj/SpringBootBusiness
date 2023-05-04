@@ -49,7 +49,7 @@ public class SysTaskJobRunner implements CommandLineRunner {
                         new SchedulingRunnable(job.getBeanName(), job.getMethodName(), job.getMethodParams()),
                         job.getCronExpression()
                 );
-                ModulesCandyConfig.CandyTask.lastUpd.put(jobKey, job.getUpdateTime());
+                ModulesCandyConfig.CandyTask.lastUpd.put(jobKey.getName(), job.getUpdateTime());
             }
         }
         log.info("定时任务已加载完毕... {}", jobList.size());
@@ -76,18 +76,18 @@ public class SysTaskJobRunner implements CommandLineRunner {
             Map<JobKey, SysTaskJob> dataBaseEnableJobMap = sysTaskJobService.getSysJobListByStatus(Enable.ENABLE).stream().collect(
                     Collectors.toMap(job -> JobKey.jobKey(job.getId()), Function.identity())
             );
-            Set<JobKey> jobKeySet = cronTaskRegistrar.jobKeySet();
+            Set<String> jobKeySet = cronTaskRegistrar.jobKeysSet();
             // 循环结束后，剩下的就是：数据库中不存在，定时任务中存在 需要移除的定时任务
-            Set<JobKey> notInDataBaseJobKey = new HashSet<>(jobKeySet);
+            Set<String> notInDataBaseJobKey = new HashSet<>(jobKeySet);
             for (Map.Entry<JobKey, SysTaskJob> entry : dataBaseEnableJobMap.entrySet()) {
                 JobKey jobKey = entry.getKey();
                 SysTaskJob taskJob = entry.getValue();
 
                 // 3. 都存在 判断更新时间是否一致，若不一致则执行更新
-                if (jobKeySet.contains(jobKey)) {
-                    notInDataBaseJobKey.remove(jobKey);
+                if (jobKeySet.contains(jobKey.getName())) {
+                    notInDataBaseJobKey.remove(jobKey.getName());
                     // 一致，不执行更新
-                    if (taskJob.getUpdateTime().equals(ModulesCandyConfig.CandyTask.lastUpd.get(jobKey))) {
+                    if (taskJob.getUpdateTime().equals(ModulesCandyConfig.CandyTask.lastUpd.get(jobKey.getName()))) {
                         continue;
                     }
                 }
@@ -100,16 +100,16 @@ public class SysTaskJobRunner implements CommandLineRunner {
                 );
 
                 // 更新更新时间
-                ModulesCandyConfig.CandyTask.lastUpd.put(jobKey, taskJob.getUpdateTime());
+                ModulesCandyConfig.CandyTask.lastUpd.put(jobKey.getName(), taskJob.getUpdateTime());
             }
 
             // 1. 数据库不存在 定时任务中存在 移除定时任务
             if (notInDataBaseJobKey.size() == 0) {
                 return;
             }
-            for (JobKey jobKey : notInDataBaseJobKey) {
-                // 监听定时 别打自己给移除了
-                if (jobKey.equals(listenerJobKey)) {
+            for (String jobKey : notInDataBaseJobKey) {
+                // 监听定时 别把自己给移除了
+                if (jobKey.equals(listenerJobKey.getName())) {
                     continue;
                 }
                 cronTaskRegistrar.removeCronTask(jobKey);

@@ -19,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class CronTaskRegistrar implements DisposableBean {
+    private final Map<String, JobKey> jobKeyMap = new ConcurrentHashMap<>(16);
     private final Map<JobKey, ScheduledTask> scheduledTasks = new ConcurrentHashMap<>(16);
     @Resource
     private TaskScheduler taskScheduler;
@@ -38,21 +39,25 @@ public class CronTaskRegistrar implements DisposableBean {
             return;
         }
         if (cronTask != null) {
-            if (this.scheduledTasks.containsKey(jobKey)) {
+            if (this.jobKeyMap.containsKey(jobKey.getName())) {
                 removeCronTask(jobKey);
             }
 
+            this.jobKeyMap.put(jobKey.getName(), jobKey);
             this.scheduledTasks.put(jobKey, scheduleCronTask(cronTask));
         }
     }
 
     public void removeCronTask(JobKey jobKey) {
-        if (!ModulesCandyConfig.CandyTask.open) {
-            return;
-        }
-        ScheduledTask scheduledTask = this.scheduledTasks.remove(jobKey);
-        if (scheduledTask != null)
-            scheduledTask.cancel();
+        if (!ModulesCandyConfig.CandyTask.open) return;
+        JobKey key = this.jobKeyMap.remove(jobKey.getName());
+        if (key == null) return;
+        ScheduledTask scheduledTask = this.scheduledTasks.remove(key);
+        if (scheduledTask != null) scheduledTask.cancel();
+    }
+
+    public void removeCronTask(String jobKey) {
+        this.removeCronTask(this.jobKeyMap.get(jobKey));
     }
 
     private ScheduledTask scheduleCronTask(CronTask cronTask) {
@@ -63,20 +68,18 @@ public class CronTaskRegistrar implements DisposableBean {
     }
 
     public ScheduledTask getTask(JobKey jobKey) {
-        return this.scheduledTasks.get(jobKey);
+        return this.scheduledTasks.get(this.jobKeyMap.get(jobKey.getName()));
     }
 
-    public Set<JobKey> jobKeySet() {
-        return this.scheduledTasks.keySet();
+    public Set<String> jobKeysSet() {
+        return this.jobKeyMap.keySet();
     }
 
 
     @Override
     public void destroy() {
-        for (ScheduledTask task : this.scheduledTasks.values()) {
-            task.cancel();
-        }
-
+        this.scheduledTasks.values().forEach(ScheduledTask::cancel);
+        this.jobKeyMap.clear();
         this.scheduledTasks.clear();
     }
 }
