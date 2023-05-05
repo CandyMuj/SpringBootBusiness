@@ -76,7 +76,7 @@ public class SysTaskJobRunner implements CommandLineRunner {
             Map<JobKey, SysTaskJob> dataBaseEnableJobMap = sysTaskJobService.getSysJobListByStatus(Enable.ENABLE).stream().collect(
                     Collectors.toMap(job -> JobKey.jobKey(job.getId()), Function.identity())
             );
-            Set<String> jobKeySet = cronTaskRegistrar.jobKeysSet();
+            Set<String> jobKeySet = cronTaskRegistrar.jobKeySet();
             // 循环结束后，剩下的就是：数据库中不存在，定时任务中存在 需要移除的定时任务
             Set<String> notInDataBaseJobKey = new HashSet<>(jobKeySet);
             for (Map.Entry<JobKey, SysTaskJob> entry : dataBaseEnableJobMap.entrySet()) {

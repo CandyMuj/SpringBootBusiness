@@ -71,7 +71,7 @@ public class CronTaskRegistrar implements DisposableBean {
         return this.scheduledTasks.get(this.jobKeyMap.get(jobKey.getName()));
     }
 
-    public Set<String> jobKeysSet() {
+    public Set<String> jobKeySet() {
         return this.jobKeyMap.keySet();
     }
 
