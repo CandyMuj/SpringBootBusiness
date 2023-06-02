@@ -30,6 +30,7 @@ public class LogFilter implements Filter {
         log.debug("============================================================================================");
         if (servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse) {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
 
             log.debug("URL : {}", request.getRequestURL().toString());
             log.debug("IP : {}-{}", request.getRemoteAddr(), IpUtil.getRealIP(request));
@@ -40,6 +41,9 @@ public class LogFilter implements Filter {
                 String headerName = enumeration.nextElement();
                 log.debug("HEADER : {}   \t{}", headerName, request.getHeader(headerName));
             }
+
+            // 设置全局header头
+            response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
         }
 
         filterChain.doFilter(servletRequest, servletResponse);
