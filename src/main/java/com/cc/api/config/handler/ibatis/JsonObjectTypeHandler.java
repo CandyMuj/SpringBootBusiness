@@ -20,6 +20,7 @@ import java.sql.SQLException;
  **/
 @MappedTypes({
         JSONObject.class,
+        cn.hutool.json.JSONObject.class,
 })
 @MappedJdbcTypes(JdbcType.VARCHAR)
 public class JsonObjectTypeHandler<T> extends BaseTypeHandler<T> {
