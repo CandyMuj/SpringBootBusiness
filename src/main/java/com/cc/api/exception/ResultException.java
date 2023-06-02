@@ -1,5 +1,6 @@
 package com.cc.api.exception;
 
+import cn.hutool.core.util.StrUtil;
 import com.cc.api.config.StatusCode;
 
 /**
@@ -13,6 +14,7 @@ import com.cc.api.config.StatusCode;
  */
 public class ResultException extends RuntimeException {
     private Integer resCode = StatusCode.FAIL;
+    private String errCode = null;
 
 
     public ResultException(String msg, Throwable t) {
@@ -23,14 +25,29 @@ public class ResultException extends RuntimeException {
         super(msg);
     }
 
-    public ResultException(String msg, Integer resCode) {
+    public ResultException(String msg, Integer resCode, String errCode) {
         super(msg);
         if (resCode != null) {
             this.resCode = resCode;
         }
+        if (StrUtil.isNotBlank(errCode)) {
+            this.errCode = errCode;
+        }
+    }
+
+    public ResultException(String msg, Integer resCode) {
+        this(msg, resCode, null);
+    }
+
+    public ResultException(String msg, String errCode) {
+        this(msg, null, errCode);
     }
 
     public int getResCode() {
         return resCode;
+    }
+
+    public String getErrCode() {
+        return errCode;
     }
 }
