@@ -28,6 +28,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -151,6 +152,7 @@ public class SwaggerConfig {
     }
 
     private List<Parameter> globalParameters() {
+        if (true) return Collections.emptyList();
         List<Parameter> parameterList = new ArrayList<>();
 
         ParameterBuilder tokenBuilder = new ParameterBuilder();
