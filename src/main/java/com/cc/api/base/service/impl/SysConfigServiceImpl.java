@@ -59,6 +59,8 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
         }
         if (SysConfigType.JSON.getCode().equals(sysConfig.getConfigType())) {
             return JSONUtil.toBean(sysConfig.getConfigVal(), clazz);
+        } else if (SysConfigType.JSON_ARR.getCode().equals(sysConfig.getConfigType())) {
+            return JSONUtil.parseArray(sysConfig.getConfigVal()).toBean(clazz);
         } else {
             return ReflectUtil.newInstance(clazz, sysConfig.getConfigVal());
         }

@@ -1,5 +1,6 @@
 package com.cc.api.base.enumc;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.Arrays;
@@ -10,6 +11,7 @@ public enum SysConfigType {
     INTEGER(3, Integer.class),
     LONG(4, Long.class),
     BOOL(5, Boolean.class),
+    JSON_ARR(6, JSONArray.class),
     ;
 
     private final Integer code;
