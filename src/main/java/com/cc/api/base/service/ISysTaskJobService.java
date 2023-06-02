@@ -15,11 +15,13 @@ import java.util.List;
  */
 public interface ISysTaskJobService extends IService<SysTaskJob> {
 
+    List<SysTaskJob> getSysJobListByStatus(Enable enable);
+
     Result<?> addOrUpd(SysTaskJob taskJob);
 
     Result<?> delete(Integer jobId);
 
     Result<?> switchTask(Integer jobId);
 
-    List<SysTaskJob> getSysJobListByStatus(Enable enable);
+    Result<?> runTask(Integer jobId);
 }

@@ -1,5 +1,7 @@
 package com.cc.api.base.service.impl;
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cc.api.base.mapper.SysTaskJobMapper;
 import com.cc.api.base.pojo.SysTaskJob;
@@ -29,6 +31,14 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
     @Resource
     private CronTaskRegistrar cronTaskRegistrar;
 
+
+    /**
+     * 通过状态获取定时任务列表
+     */
+    @Override
+    public List<SysTaskJob> getSysJobListByStatus(Enable enable) {
+        return super.lambdaQuery().eq(SysTaskJob::getJobStatus, enable.getCode()).list();
+    }
 
     /**
      * 新增或更新定时任务
@@ -130,11 +140,18 @@ public class SysTaskJobServiceImpl extends ServiceImpl<SysTaskJobMapper, SysTask
     }
 
     /**
-     * 通过状态获取定时任务列表
+     * 立即执行一次任务
      */
     @Override
-    public List<SysTaskJob> getSysJobListByStatus(Enable enable) {
-        return super.lambdaQuery().eq(SysTaskJob::getJobStatus, enable.getCode()).list();
+    public Result<?> runTask(Integer jobId) {
+        SysTaskJob taskJob = Assert.notNull(super.getById(jobId), "任务不存在");
+
+        try {
+            cronTaskRegistrar.getTask(JobKey.jobKey(taskJob.getId())).getCronTask().getRunnable().run();
+            return Result.OK();
+        } catch (Exception e) {
+            return Result.Error(StrUtil.format("执行失败 {}", e.getMessage()));
+        }
     }
 
 }

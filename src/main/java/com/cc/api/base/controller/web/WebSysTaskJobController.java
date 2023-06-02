@@ -90,4 +90,16 @@ public class WebSysTaskJobController extends BaseController {
         return sysTaskJobService.switchTask(jobId);
     }
 
+    @Ann
+    @ApiOperation("管理端-立即执行一次任务")
+    @PostMapping("/run")
+    public Result<?> runTask(
+            @ApiParam(required = true, value = "任务ID") @RequestParam Integer jobId,
+            @ApiIgnore User user
+    ) {
+        super.validateAdmin(user);
+
+        return sysTaskJobService.runTask(jobId);
+    }
+
 }
